@@ -1,0 +1,3104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pembelajaran Interaktif: Tata Nama Alkena IUPAC</title>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #047857;
+            --primary-light: #d1fae5;
+            --secondary: #059669;
+            --secondary-dark: #065f46;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --light-gray: #e5e7eb;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f0fdf4;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* App Layout */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .app-header h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 60px);
+            overflow: hidden;
+        }
+
+        /* Navigation Sidebar */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid var(--light-gray);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .nav-section {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+        }
+        .nav-item.nav-locked {
+            opacity: .48;
+            cursor: not-allowed;
+        }
+        .nav-item.nav-locked:hover {
+            background: transparent;
+            color: var(--dark);
+        }
+        .nav-item .nav-lock {
+            width: auto;
+            margin-left: auto;
+            font-size: .78rem;
+        }
+        .next-step-panel, .guide-panel {
+            display:flex;
+            align-items:center;
+            gap:1rem;
+            padding:1rem 1.15rem;
+            border:1px solid #a7f3d0;
+            border-radius:16px;
+            background:linear-gradient(135deg,#f0fdf4,#ecfdf5);
+        }
+        .guide-panel-mascot {
+            font-size:1.7rem;
+            min-width:52px;
+            text-align:center;
+        }
+        .guide-panel strong { color:var(--primary-dark); }
+        .guide-panel p { margin:.25rem 0 0; color:var(--gray); font-size:.9rem; }
+
+        .guide-panel.mascot-guide {
+            display:flex;
+            align-items:center;
+            gap:1rem;
+            padding:1rem 1.1rem;
+            overflow:visible;
+        }
+        .guide-mascot-scene {
+            display:flex;
+            align-items:flex-end;
+            justify-content:center;
+            gap:.15rem;
+            min-width:220px;
+            height:125px;
+            overflow:visible;
+            flex-shrink:0;
+        }
+        .guide-mascot-scene .mascot-wrap {
+            width:105px;
+            height:115px;
+            position:relative;
+            cursor:default;
+            flex:0 0 auto;
+        }
+        .guide-mascot-scene .lab-character {
+            width:105px;
+            height:105px;
+            animation:characterFloat 3.2s ease-in-out infinite;
+        }
+        .guide-mascot-scene .test-tube { animation-delay:-.8s; }
+        .guide-mascot-dialog {
+            flex:1;
+            background:#fff;
+            border:2px solid #a7f3d0;
+            border-radius:16px;
+            padding:.75rem 1rem;
+            position:relative;
+        }
+        .guide-mascot-dialog:before {
+            content:"";
+            position:absolute;
+            left:-9px;
+            top:34px;
+            width:15px;
+            height:15px;
+            background:#fff;
+            border-left:2px solid #a7f3d0;
+            border-bottom:2px solid #a7f3d0;
+            transform:rotate(45deg);
+        }
+        .guide-mascot-dialog strong { color:var(--primary-dark); }
+        .guide-mascot-dialog p {
+            margin:.18rem 0 .55rem;
+            color:var(--gray);
+            font-size:.9rem;
+        }
+        @media(max-width:700px){
+            .guide-panel.mascot-guide{flex-direction:column;text-align:center}
+            .guide-mascot-scene{min-width:100%}
+            .guide-mascot-dialog{width:100%;box-sizing:border-box}
+            .guide-mascot-dialog:before{
+                left:50%;top:-9px;transform:translateX(-50%) rotate(135deg)
+            }
+        }
+        @media (max-width:700px) {
+            .next-step-panel, .guide-panel { flex-direction:column; align-items:stretch; text-align:center; }
+        }
+
+        /* Main Content Area */
+        .content-area {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            background-color: #f8fffb;
+        }
+
+        .page-content {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Components */
+        h2 {
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-light);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: var(--dark);
+            margin: 1.2rem 0 0.8rem 0;
+            font-size: 1.1rem;
+        }
+
+        p, li {
+            line-height: 1.6;
+            color: #4b5563;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: #f9fafb;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        /* Chemical Structure Canvas / Render Area */
+        .chem-box {
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+        }
+
+        .chem-structure {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e293b;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .c-node {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .c-node.selected {
+            background-color: #fef08a;
+            border: 2px solid #eab308;
+        }
+
+        .c-node .c-num {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #047857;
+            font-weight: 800;
+            background: #d1fae5;
+            padding: 1px 5px;
+            border-radius: 10px;
+        }
+
+        /* Interactive Simulation Builder */
+        .control-panel {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-top: 1rem;
+        }
+
+        .step-builder {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        select, input[type="text"], input[type="number"] {
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .feedback-box {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .feedback-box.correct {
+            display: flex;
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .feedback-box.incorrect {
+            display: flex;
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        /* Quiz Styling */
+        .quiz-option {
+            background: white;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.6rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background: #f0fdf4;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .quiz-option.correct-ans {
+            border-color: var(--success);
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .quiz-option.wrong-ans {
+            border-color: var(--danger);
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        /* Flowchart Vis */
+        .flowchart-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .flow-node {
+            background: #ecfdf5;
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-align: center;
+            width: 80%;
+            max-width: 350px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .flow-node:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.03);
+        }
+
+        .flow-arrow {
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        .flow-split {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            .app-header {
+                padding: 1rem;
+            }
+            .flow-split {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .molecule-explorer{display:grid;grid-template-columns:1.5fr .9fr;gap:1rem;align-items:stretch}
+        .viewer-card{background:linear-gradient(145deg,#f8fafc,#ecfdf5);border:1px solid #d1fae5;border-radius:16px;padding:1rem;box-shadow:0 8px 24px rgba(15,23,42,.06)}
+        #mol3d{height:420px;width:100%;border-radius:14px;background:radial-gradient(circle at 50% 35%,#ffffff 0,#ecfdf5 55%,#d1fae5 100%);position:relative;overflow:hidden}
+        .viewer-hint{font-size:.82rem;color:#64748b;text-align:center;margin-top:.6rem}
+        .atom-legend{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.7rem;justify-content:center;font-size:.82rem}
+        .atom-dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:1px solid #94a3b8;vertical-align:-2px;margin-right:4px}
+        .explore-tools{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+        .explore-tools .btn{padding:.55rem .8rem;font-size:.85rem}
+        .mission-card{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:1rem;height:100%}
+        .mission-step{display:flex;gap:.65rem;padding:.75rem;border-radius:12px;background:#f8fafc;margin-bottom:.65rem;cursor:pointer;transition:.2s;border:1px solid transparent}
+        .mission-step:hover{transform:translateY(-2px);border-color:#a7f3d0;background:#ecfdf5}
+        .mission-num{min-width:30px;height:30px;border-radius:50%;background:var(--secondary);color:#fff;display:grid;place-items:center;font-weight:700}
+        .atom-info{margin-top:.8rem;min-height:42px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:.65rem;font-size:.85rem;color:#065f46}
+        @media(max-width:800px){.molecule-explorer{grid-template-columns:1fr}#mol3d{height:330px}}
+    
+        .molecule-image-card{margin:.9rem 0 1rem;background:linear-gradient(135deg,#f8fbff,#ecfdf5);border:1px solid #cbd5e1;border-radius:16px;padding:.8rem;text-align:center;}
+        .molecule-image-title{font-weight:800;color:var(--primary-dark);margin-bottom:.5rem;text-align:left;}
+        .molecule-preview-image{display:block;width:100%;max-width:560px;height:250px;object-fit:contain;margin:auto;border-radius:12px;background:#f0fdf4;}
+        .molecule-image-caption{font-size:.78rem;color:#64748b;margin-top:.55rem;line-height:1.45;}
+.tp-desc{margin:0; color:#475569; font-size:.82rem; line-height:1.4;}
+
+
+        /* Maskot Erlenmeyer kecil pada setiap halaman/slide */
+        .page-eraser-mascot {
+            position: absolute; right: 12px; bottom: 10px; z-index: 3;
+            width: 48px; height: 54px; pointer-events: none; opacity: .92;
+            filter: drop-shadow(0 3px 5px rgba(4,120,87,.14));
+        }
+        .page-eraser-mascot .mini-mascot { width: 48px; height: 54px; }
+        @media (max-width: 600px) {
+            .page-eraser-mascot { width: 40px; height: 45px; right: 7px; bottom: 7px; }
+            .page-eraser-mascot .mini-mascot { width: 40px; height: 45px; }
+        }
+
+        /* ===== CHEMEOWSTRY VISUAL POLISH: emerald + subtle sparkles ===== */
+        body {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f8fffb 52%, #d1fae5 100%);
+        }
+        .app-header {
+            background: linear-gradient(135deg, #047857 0%, #059669 45%, #10b981 75%, #34d399 100%);
+            background-size: 220% 220%;
+            animation: emeraldShift 10s ease infinite;
+        }
+        .content-area {
+            position: relative;
+            background: linear-gradient(135deg, #f8fffb 0%, #ffffff 48%, #ecfdf5 100%);
+            overflow-y: auto;
+        }
+        .content-area::before,
+        .page-content::before {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                radial-gradient(circle, rgba(16,185,129,.22) 0 1px, transparent 1.8px),
+                radial-gradient(circle, rgba(5,150,105,.13) 0 1px, transparent 1.7px);
+            background-size: 42px 42px, 68px 68px;
+            background-position: 8px 12px, 28px 34px;
+            animation: sparkleDrift 16s linear infinite;
+        }
+        .content-area::before { inset: 0; opacity: .42; }
+        .page-content {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255,255,255,.94);
+            border: 1px solid rgba(16,185,129,.08);
+        }
+        .page-content::before { inset: 0; opacity: .22; }
+        .page-content > * { position: relative; z-index: 1; }
+        .card {
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+        }
+        .guide-card {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .guide-card::after {
+            content: attr(data-tip);
+            display: block;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin-top: 0;
+            padding: 0 .8rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            color: #065f46;
+            font-size: .82rem;
+            line-height: 1.45;
+            transition: max-height .28s ease, opacity .2s ease, margin-top .28s ease, padding .28s ease;
+        }
+        .guide-card:hover,
+        .guide-card.is-active {
+            transform: translateY(-4px);
+            border-color: #6ee7b7;
+            box-shadow: 0 12px 26px rgba(5,150,105,.13);
+        }
+        .guide-card.is-active::after {
+            max-height: 90px;
+            opacity: 1;
+            margin-top: .75rem;
+            padding: .65rem .8rem;
+        }
+        .guide-card .card-icon {
+            transition: transform .25s ease, filter .25s ease;
+        }
+        .guide-card:hover .card-icon,
+        .guide-card.is-active .card-icon {
+            transform: translateY(-2px) rotate(-4deg);
+            filter: drop-shadow(0 5px 8px rgba(5,150,105,.2));
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #047857, #10b981 55%, #34d399);
+            background-size: 180% 180%;
+            animation: buttonShimmer 7s ease infinite;
+            box-shadow: 0 7px 16px rgba(5,150,105,.16);
+        }
+        .btn-primary:hover {
+            background-position: 100% 0;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(5,150,105,.22);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+        .btn-outline {
+            border-color: #10b981;
+            color: #047857;
+        }
+        .welcome-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,.97);
+            padding: 1.4rem 1.7rem 1.6rem;
+            text-align: center;
+            border-radius: 28px;
+            box-shadow: 0 24px 70px rgba(4,120,87,.28);
+            max-width: 760px;
+            width: min(94%, 760px);
+            border: 2px solid rgba(255,255,255,.88);
+            overflow: hidden;
+        }
+        .welcome-card::before {
+            content: "";
+            position: absolute;
+            inset: -45%;
+            background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.78) 50%, transparent 60%);
+            animation: welcomeSheen 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .welcome-card > * { position: relative; z-index: 1; }
+        .welcome-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .32rem .8rem;
+            border-radius: 999px;
+            background: #d1fae5;
+            color: #047857;
+            font-size: .75rem;
+            font-weight: 900;
+            letter-spacing: .08em;
+            margin-bottom: .3rem;
+        }
+        .welcome-card h1 {
+            color: #047857;
+            font-size: clamp(1.55rem, 4vw, 2.25rem);
+            margin: .2rem 0 .35rem;
+            text-shadow: 0 2px 0 #fff;
+        }
+        .welcome-card p { margin: 0; color:#166534; }
+        .welcome-start-btn { margin-top: .85rem; min-width: 150px; position:relative; z-index:10; pointer-events:auto; }
+        .welcome-card::before, .welcome-card::after { pointer-events:none; }
+        .welcome-chem-friends {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            height: 190px;
+            margin: -.25rem auto .15rem;
+            max-width: 700px;
+        }
+        .lab-character {
+            width: 190px;
+            height: 185px;
+            overflow: visible;
+            animation: characterFloat 3.2s ease-in-out infinite;
+            filter: drop-shadow(0 12px 10px rgba(4,120,87,.13));
+        }
+        .lab-character.test-tube { animation-delay: -.8s; }
+        .lab-character .wave-arm {
+            transform-box: fill-box;
+            transform-origin: center bottom;
+            animation: svgWave 1.15s ease-in-out infinite;
+        }
+        .lab-character .eye-pupil { animation: pupilLook 3.4s ease-in-out infinite; }
+        .lab-character .liquid-wave { animation: liquidWave 2.5s ease-in-out infinite; transform-origin:center; }
+        .welcome-sparkles {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,.88) 0 1px, transparent 2px),
+                radial-gradient(circle, rgba(255,255,255,.5) 0 1px, transparent 2px),
+                radial-gradient(circle, rgba(167,243,208,.65) 0 1.5px, transparent 3px);
+            background-size: 54px 54px, 91px 91px, 133px 133px;
+            animation: sparkleDrift 13s linear infinite;
+            opacity: .72;
+        }
+        @keyframes emeraldShift {
+            0%,100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes sparkleDrift {
+            from { transform: translate3d(0,0,0); }
+            to { transform: translate3d(24px,18px,0); }
+        }
+        @keyframes buttonShimmer {
+            0%,100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes welcomeSheen {
+            0%,45% { transform: translateX(-38%) rotate(15deg); opacity:0; }
+            55% { opacity:.65; }
+            100% { transform: translateX(38%) rotate(15deg); opacity:0; }
+        }
+        @keyframes characterFloat {
+            0%,100% { transform: translateY(2px) rotate(-1deg); }
+            50% { transform: translateY(-7px) rotate(1deg); }
+        }
+        @keyframes svgWave {
+            0%,100% { transform: rotate(-4deg); }
+            50% { transform: rotate(18deg); }
+        }
+        @keyframes liquidWave {
+            0%,100% { transform: translateX(-2px); }
+            50% { transform: translateX(2px); }
+        }
+        @keyframes pupilLook {
+            0%,100% { transform: translateX(0); }
+            35% { transform: translateX(2px); }
+            70% { transform: translateX(-1px); }
+        }
+        @media (max-width: 620px) {
+            .welcome-chem-friends { height: 145px; }
+            .lab-character { width: 145px; height: 145px; }
+            .welcome-card { padding: 1rem 1rem 1.2rem; }
+        }
+
+        /* Interactive essay section — stays inside the three storyboard boxes. */
+        .essay-grid { display:grid; gap:1rem; }
+        .essay-card { position:relative; overflow:hidden; }
+        .essay-card h3 { display:flex; align-items:center; gap:.55rem; color:var(--primary-dark); margin-top:0; }
+        .essay-slide { display:none; animation: essaySlideIn .3s ease; }
+        .essay-slide.active { display:block; }
+        @keyframes essaySlideIn { from{opacity:0;transform:translateX(12px)} to{opacity:1;transform:translateX(0)} }
+        .essay-structure { background:linear-gradient(135deg,#ecfdf5,#f0fdf4); border:1px solid #a7f3d0; border-radius:14px; padding:1rem; text-align:center; font-size:1.15rem; font-weight:800; margin:.75rem 0; }
+        .essay-textarea { width:100%; min-height:125px; padding:.85rem; border:1px solid #cbd5e1; border-radius:12px; resize:vertical; font:inherit; box-sizing:border-box; }
+        .essay-textarea:focus { outline:3px solid rgba(16,185,129,.15); border-color:#10b981; }
+        .essay-progress { display:flex; gap:.35rem; margin:.7rem 0 1rem; }
+        .essay-progress span { flex:1; height:7px; border-radius:99px; background:#d1fae5; transition:.25s; }
+        .essay-progress span.active { background:linear-gradient(90deg,#047857,#10b981); }
+        .essay-nav { display:flex; justify-content:space-between; align-items:center; gap:.6rem; margin-top:.85rem; flex-wrap:wrap; }
+        .essay-counter { font-weight:800; color:#047857; font-size:.9rem; }
+        .choice-grid { display:grid; gap:.65rem; margin-top:1rem; }
+        .choice-btn { width:100%; text-align:left; padding:.8rem .9rem; border:2px solid #d1fae5; background:#fff; border-radius:12px; cursor:pointer; font:inherit; transition:.2s; }
+        .choice-btn:hover:not(:disabled) { border-color:#10b981; transform:translateY(-1px); box-shadow:0 6px 16px rgba(5,150,105,.1); }
+        .choice-btn.selected-correct { border-color:#059669; background:#ecfdf5; }
+        .choice-btn.selected-wrong { border-color:#ef4444; background:#fef2f2; animation:wrongShake .25s ease; }
+        .choice-btn:disabled { cursor:default; }
+        @keyframes wrongShake { 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+        .answer-feedback { display:none; margin-top:.8rem; padding:.75rem .9rem; border-radius:11px; font-size:.9rem; }
+        .answer-feedback.show { display:block; }
+        .answer-feedback.correct { background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; }
+        .answer-feedback.wrong { background:#fef2f2; color:#991b1b; border:1px solid #fecaca; }
+        .locked-next { opacity:.45; cursor:not-allowed !important; pointer-events:none; }
+        .locked-preview-notice { margin: .75rem 0 1rem; padding: .75rem 1rem; border: 1px solid #fcd34d; border-radius: 12px; background: #fffbeb; color: #92400e; font-size: .9rem; }
+        .page-content.locked-preview > :not(.page-back-row):not(.locked-preview-notice) { pointer-events: none !important; }
+        .page-content.locked-preview .page-back-row,
+        .page-content.locked-preview .page-back-row * { pointer-events: auto !important; }
+        .order-chip { display:inline-block; padding:.3rem .55rem; border-radius:8px; background:#d1fae5; color:#065f46; font-weight:800; margin:.15rem; }
+        .appreciation { display:none; text-align:center; padding:1.25rem; margin-top:1rem; border-radius:18px; background:linear-gradient(135deg,#ecfdf5,#d1fae5,#f0fdf4); border:1px solid #86efac; }
+        .appreciation.show { display:block; animation: essaySlideIn .4s ease; }
+        .appreciation .trophy { font-size:2.4rem; animation:trophyPop .8s ease both; }
+        @keyframes trophyPop { 0%{transform:scale(.5);opacity:0} 70%{transform:scale(1.15)} 100%{transform:scale(1);opacity:1} }
+        @media (prefers-reduced-motion: reduce) {
+            .app-header,.btn-primary,.page-content::before,.content-area::before,
+            .welcome-card::before,.welcome-sparkles,.chem-person,.waving,.eye i { animation:none !important; }
+        }
+
+
+        /* ===== Soal essai mengalir + hasil akhir ===== */
+        .quiz-section-label { display:inline-block; padding:.3rem .75rem; border-radius:999px; background:#d1fae5; color:#047857; font-weight:800; font-size:.8rem; margin-bottom:.4rem; }
+        .choice-btn.picked { border-color:#059669; background:#ecfdf5; font-weight:600; }
+        .quiz-hint { font-size:.8rem; color:#64748b; margin-top:.5rem; }
+        .score-hero { text-align:center; padding:1.4rem 1rem; border-radius:18px; background:linear-gradient(135deg,#ecfdf5,#d1fae5,#f0fdf4); border:1px solid #86efac; }
+        .score-ring { width:150px; height:150px; border-radius:50%; margin:.4rem auto .8rem; display:grid; place-items:center; background:conic-gradient(#10b981 calc(var(--pct) * 1%), #d1fae5 0); position:relative; }
+        .score-ring::after { content:""; position:absolute; inset:12px; background:#fff; border-radius:50%; }
+        .score-ring b { position:relative; z-index:1; font-size:2.3rem; color:#047857; line-height:1; text-align:center; }
+        .score-ring small { display:block; font-size:.7rem; color:#64748b; font-weight:600; }
+        .score-rows { display:grid; gap:.5rem; margin:1rem 0; }
+        .score-row { display:flex; justify-content:space-between; gap:.6rem; background:#fff; border:1px solid #d1fae5; border-radius:10px; padding:.6rem .85rem; font-size:.9rem; }
+        .review-box { margin-top:1rem; border:1px solid #e5e7eb; border-radius:12px; background:#fff; }
+        .review-box summary { cursor:pointer; padding:.8rem 1rem; font-weight:700; color:#047857; }
+        .review-item { padding:.8rem 1rem; border-top:1px solid #f1f5f9; font-size:.88rem; line-height:1.55; }
+        .review-item .tag { display:inline-block; padding:.12rem .5rem; border-radius:999px; font-size:.72rem; font-weight:800; margin-left:.35rem; }
+        .tag.ok { background:#d1fae5; color:#065f46; }
+        .tag.part { background:#fef3c7; color:#92400e; }
+        .tag.bad { background:#fee2e2; color:#991b1b; }
+        .koreksi-box { margin-top:1rem; padding:1rem 1.1rem; border-radius:14px; background:#fffbeb; border:1px solid #fde68a; }
+        .koreksi-box.clean { background:#ecfdf5; border-color:#a7f3d0; }
+        .koreksi-box ul { padding-left:1.2rem; margin:.4rem 0 0; }
+        .koreksi-box li { margin-bottom:.5rem; font-size:.9rem; }
+
+        /* ===== Pembuka interaktif ===== */
+        .lab-character { cursor:pointer; -webkit-tap-highlight-color:transparent; }
+        .lab-character.tracking .eye-pupil { animation:none; transform:translate(var(--px,0px),var(--py,0px)); transition:transform .12s ease-out; }
+        .lab-character.cheer { animation:mascotJump .65s ease-in-out infinite; }
+        .lab-character.cheer .wave-arm { animation-duration:.3s; }
+        .lab-character.jump { animation:mascotJump .7s ease; }
+        @keyframes mascotJump {
+            0%   { transform:translateY(0) scale(1,1); }
+            25%  { transform:translateY(8px) scale(1.06,.92); }
+            55%  { transform:translateY(-34px) scale(.95,1.06) rotate(-4deg); }
+            80%  { transform:translateY(2px) scale(1.04,.96); }
+            100% { transform:translateY(0) scale(1,1); }
+        }
+        .mascot-bubble { position:absolute; top:6px; left:50%; transform:translateX(-50%); min-width:120px; max-width:200px; background:#fff; border:2px solid #a7f3d0; color:#065f46; border-radius:16px; padding:.5rem .8rem; font-size:.8rem; font-weight:700; line-height:1.35; box-shadow:0 8px 18px rgba(4,120,87,.14); pointer-events:none; z-index:3; }
+        .mascot-bubble.bump { animation:bubbleBump .35s ease; }
+        @keyframes bubbleBump { 0%{transform:translateX(-50%) scale(.85)} 60%{transform:translateX(-50%) scale(1.06)} 100%{transform:translateX(-50%) scale(1)} }
+        .welcome-bubbles { position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
+        .w-bubble { position:absolute; bottom:-70px; border-radius:50%; background:radial-gradient(circle at 30% 28%, rgba(255,255,255,.95) 0 12%, rgba(209,250,229,.35) 40%, rgba(110,231,183,.2)); border:1.5px solid rgba(255,255,255,.75); box-shadow:inset 0 0 8px rgba(255,255,255,.5); cursor:pointer; pointer-events:auto; animation:bubbleRise var(--d,12s) linear infinite; }
+        @keyframes bubbleRise { from{transform:translate(0,0)} 50%{transform:translate(var(--dx,20px),-60vh)} to{transform:translate(calc(var(--dx,20px) * -1),-125vh)} }
+        .w-bubble.popped { animation:bubblePop .4s ease-out forwards; }
+        @keyframes bubblePop { to { transform:scale(1.8); opacity:0; } }
+        .bubble-counter { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); z-index:4; background:rgba(255,255,255,.88); color:#047857; font-weight:700; font-size:.8rem; padding:.3rem .8rem; border-radius:999px; pointer-events:none; white-space:nowrap; }
+        .trail-spark { position:absolute; z-index:5; pointer-events:none; color:#fff; font-size:14px; text-shadow:0 0 6px rgba(52,211,153,.9); animation:sparkFade .8s ease-out forwards; }
+        .trail-spark.big { font-size:20px; }
+        @keyframes sparkFade { from{opacity:1; transform:translate(-50%,-50%) scale(1)} to{opacity:0; transform:translate(calc(-50% + var(--dx,0px)), calc(-50% - 36px)) scale(.4)} }
+        .welcome-name { margin-top:.8rem; }
+        .welcome-name input { width:min(100%,300px); text-align:center; border-radius:999px; border:2px solid #a7f3d0; padding:.55rem 1rem; font-size:.9rem; }
+        #startPanel.leaving { opacity:0; transition:opacity .45s ease; }
+        @media (max-width:620px) { .mascot-bubble { max-width:150px; min-width:100px; font-size:.72rem; top:-4px; } }
+
+        /* ===== Maskot penyemangat saat mengerjakan soal ===== */
+        .quiz-mascot-row { display:flex; align-items:center; gap:.7rem; margin-bottom:.8rem; }
+        .mini-mascot { width:78px; height:88px; flex:none; overflow:visible; animation:characterFloat 3.2s ease-in-out infinite; cursor:pointer; filter:drop-shadow(0 6px 6px rgba(4,120,87,.12)); }
+        .mini-mascot .mm-arm { transform-box:fill-box; transform-origin:center bottom; animation:svgWave 1.6s ease-in-out infinite; }
+        .mini-mascot .mm-eye { transform-box:fill-box; transform-origin:center; animation:mmBlink 4.5s infinite; }
+        @keyframes mmBlink { 0%,92%,100%{transform:scaleY(1)} 95%{transform:scaleY(.1)} }
+        .mini-mascot.cheer { animation:mascotJump .7s ease; }
+        .mini-mascot.cheer .mm-arm, .mini-mascot.party .mm-arm { animation-duration:.35s; }
+        .mini-mascot.party { animation:mascotJump 1.3s ease-in-out infinite; }
+        .quiz-bubble { position:relative; background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; padding:.55rem .85rem; border-radius:14px; font-size:.88rem; font-weight:600; line-height:1.4; }
+        .quiz-bubble::before { content:""; position:absolute; left:-7px; top:50%; margin-top:-6px; border:6px solid transparent; border-right-color:#a7f3d0; border-left:0; }
+        .cheer-box { display:flex; align-items:center; gap:.9rem; margin-top:1.2rem; padding:1rem 1.1rem; border-radius:16px; background:linear-gradient(135deg,#ecfdf5,#f0fdf4); border:1px solid #a7f3d0; }
+        .cheer-box p { margin:0; font-size:.92rem; color:#065f46; }
+        .confetti { position:fixed; top:-30px; z-index:3000; pointer-events:none; animation:confettiFall linear forwards; }
+        @keyframes confettiFall { to { transform:translateY(112vh) rotate(360deg); opacity:.9; } }
+        @media (prefers-reduced-motion: reduce) {
+            .lab-character, .lab-character.cheer, .lab-character.jump, .w-bubble, .mini-mascot, .mini-mascot .mm-arm, .mini-mascot .mm-eye { animation:none !important; }
+        }
+
+        /* ===== Maskot emerald interaktif ===== */
+        .welcome-card { overflow:visible; }
+        .welcome-card::before { inset:0; border-radius:inherit; transform:none; background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,.7) 50%, transparent 60%); background-size:260% 100%; animation:welcomeSheen2 6s ease-in-out infinite; }
+        @keyframes welcomeSheen2 { 0%,45% { background-position:130% 0; opacity:0; } 55% { opacity:.6; } 100% { background-position:-30% 0; opacity:0; } }
+        .welcome-card > .welcome-chem-friends { z-index:6; }
+        .mascot-wrap { position:relative; display:block; line-height:0; touch-action:none; cursor:grab; user-select:none; -webkit-user-select:none; z-index:2; border-radius:24px; }
+        .mascot-wrap .lab-character { display:block; }
+        .mascot-wrap.dragging { cursor:grabbing; z-index:20; }
+        .mascot-wrap.dragging .lab-character { animation:none; }
+        .mascot-wrap.settle { transition:transform .8s cubic-bezier(.34,1.7,.5,1); }
+        .mascot-wrap:focus-visible { outline:3px solid #fff; outline-offset:2px; }
+        .mascot-wrap.spin .lab-character { animation:mascotSpin .8s ease; }
+        @keyframes mascotSpin { from { transform:rotate(0) scale(1); } 50% { transform:rotate(180deg) scale(1.12); } to { transform:rotate(360deg) scale(1); } }
+        .mascot-bubble { transition:left .3s ease; }
+
+        .lab-character .liquid-level { transform:translateY(calc(var(--lv,0) * -1px)); transition:transform .7s cubic-bezier(.3,1.4,.5,1); }
+        .lab-character .liquid-slosh { transform-box:fill-box; transform-origin:50% 100%; transform:skewX(var(--sk,0deg)); transition:transform .15s ease-out; }
+        .lab-character .in-bubble { animation:inBubble 3s ease-in infinite; }
+        @keyframes inBubble { 0% { transform:translateY(0); opacity:0; } 15% { opacity:.7; } 100% { transform:translateY(-34px); opacity:0; } }
+
+        .lab-character .eye { transform-box:fill-box; transform-origin:center; animation:eyeBlink 5s infinite; transition:transform .15s; }
+        .lab-character .eye-r { animation-delay:.05s; }
+        @keyframes eyeBlink { 0%,92%,100% { transform:scaleY(1); } 95% { transform:scaleY(.08); } }
+        .lab-character .blush { opacity:0; transition:opacity .25s; }
+        .lab-character .m-grin, .lab-character .m-open { opacity:0; transition:opacity .15s; }
+        .lab-character .m-smile { transition:opacity .15s; }
+        .mascot-wrap:hover .m-smile { opacity:0; }
+        .mascot-wrap:hover .m-grin { opacity:1; }
+        .mascot-wrap:hover .blush { opacity:.75; }
+        .lab-character.happy .m-smile, .lab-character.wow .m-smile, .lab-character.wink .m-smile { opacity:0; }
+        .lab-character.happy .m-grin, .lab-character.wink .m-grin { opacity:1; }
+        .lab-character.happy .blush, .lab-character.wink .blush { opacity:.8; }
+        .lab-character.wow .m-grin { opacity:0; }
+        .lab-character.wow .m-open { opacity:1; }
+        .lab-character.wow .eye { animation:none; transform:scale(1.14); }
+        .lab-character.wink .eye-l { animation:none; transform:scaleY(.1); }
+        .lab-character.talking .m-smile { animation:talkSmile .32s steps(1) infinite; }
+        .lab-character.talking .m-open { animation:talkOpen .32s steps(1) infinite; }
+        .lab-character.talking .m-grin { opacity:0; }
+        @keyframes talkSmile { 0% { opacity:1; } 50% { opacity:0; } }
+        @keyframes talkOpen { 0% { opacity:0; } 50% { opacity:1; } }
+        @media (prefers-reduced-motion: reduce) {
+            .welcome-card::before, .lab-character .in-bubble, .lab-character .eye, .mascot-wrap.spin .lab-character { animation:none !important; }
+        }
+        /* Tombol kembali untuk setiap halaman materi */
+        .page-back-row{display:flex;justify-content:flex-start;position:sticky;top:0;z-index:50;margin:-.75rem 0 1rem;padding:.5rem 0;background:rgba(255,255,255,.96);border-bottom:1px solid #d1fae5}
+        .page-back-btn{min-width:112px;display:inline-flex;align-items:center;gap:.45rem;cursor:pointer}
+        .page-back-btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+    
+        /* ===== Latihan Eksplorasi Molekul bertahap ===== */
+        .eks-progress{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+        .eks-chip{padding:.4rem .85rem;border-radius:999px;background:#f1f5f9;color:#64748b;font-size:.8rem;font-weight:700;border:1px solid #e2e8f0;transition:.25s}
+        .eks-chip.active{background:#d1fae5;color:#047857;border-color:#6ee7b7}
+        .eks-chip.done{background:#047857;color:#fff;border-color:#047857}
+        .eks-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;align-items:start}
+        @media(max-width:860px){.eks-layout{grid-template-columns:1fr}}
+        .eks-formula{background:#fff;border:2px dashed #a7f3d0;border-radius:14px;padding:3.3rem 1rem 1.2rem;margin:.8rem 0;text-align:center;font-family:'Courier New',Courier,monospace;font-size:1.35rem;font-weight:700;color:#1e293b;overflow-x:auto;white-space:nowrap}
+        .eks-c-branch{position:relative;display:inline-block}
+        .eks-branch-up{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);line-height:1.15;text-align:center;font-size:1.35rem}
+        .eks-step{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:.8rem .9rem;margin-bottom:.7rem;transition:.2s}
+        .eks-step.ok{border-color:#10b981;background:#ecfdf5}
+        .eks-step.bad{border-color:#f87171;background:#fef2f2}
+        .eks-step label{display:block;font-weight:700;color:var(--dark);font-size:.9rem;margin-bottom:.15rem}
+        .eks-step .eks-hint{font-size:.78rem;color:#64748b;margin:0 0 .5rem;line-height:1.4}
+        .eks-step select,.eks-step input{width:100%;background:#fff}
+        .eks-step-fb{font-size:.82rem;margin-top:.45rem;line-height:1.45}
+        .eks-step.ok .eks-step-fb{color:#065f46}
+        .eks-step.bad .eks-step-fb{color:#991b1b}
+        .eks-result{display:none;margin-top:.8rem;padding:.75rem .9rem;border-radius:11px;font-size:.9rem;line-height:1.5}
+        .eks-result.show{display:block}
+        .eks-result.bad{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+        .eks-result.good{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
+        .eks-dialog-wrap{margin-top:1.2rem;animation:essaySlideIn .4s ease}
+        .eks-dialog-wrap .guide-mascot-scene{min-width:130px}
+    </style>
+<script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+</head>
+<body>
+
+    <!-- Header Top Bar -->
+    <header class="app-header">
+        <h1><i class="fa-solid fa-flask-vial"></i> Interactive Chemistry: IUPAC Alkena</h1>
+        <div>
+            <button class="btn btn-outline" style="color:white; border-color:white;" onclick="openModal('petunjukModal')">
+                <i class="fa-solid fa-circle-question"></i> Petunjuk
+            </button>
+            <button class="btn btn-outline" style="color:white; border-color:white;" onclick="openModal('pembahasanModal')">
+                <i class="fa-solid fa-book-open"></i> Panduan IUPAC
+            </button>
+        </div>
+    </header>
+
+    <div id="startPanel" style="position:fixed;inset:0;background:linear-gradient(135deg,#064e3b 0%,#047857 38%,#10b981 72%,#6ee7b7 100%);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <div class="welcome-sparkles" aria-hidden="true"></div>
+        <div class="welcome-bubbles" id="welcomeBubbles"></div>
+        <div class="bubble-counter">🫧 Gelembung pecah: <b id="bubbleCount">0</b> · Isi diva: <b id="fillPct">0</b>%</div>
+        <div class="welcome-card">
+            <div class="welcome-chem-friends">
+                <div class="mascot-bubble" id="mascotBubble">Klik, geser, atau lempar kami! 👋</div>
+
+                <!-- Erlenmeyer emerald -->
+                <div class="mascot-wrap" data-who="flask" tabindex="0" role="button" aria-label="Erlenmeyer: klik atau geser aku">
+                <svg class="lab-character flask" viewBox="0 0 190 185" role="img" aria-label="Maskot diva Erlenmeyer emerald">
+                    <defs>
+                        <linearGradient id="fGlass" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="fLiquid" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="fClip"><path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z"/></clipPath>
+                    </defs>
+                    <ellipse cx="95" cy="173" rx="54" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="url(#fGlass)"/>
+                    <g clip-path="url(#fClip)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M20 119c17-7 31 4 45-1 16-6 29 5 44 0 16-5 29 5 56 0V240H20z" fill="url(#fLiquid)"/>
+                        <circle class="in-bubble" cx="72" cy="150" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1s" cx="110" cy="146" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2s" cx="94" cy="152" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M80 34V66L57 112" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M74 20h42v11H74z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M49 109Q23 96 20 72" class="wave-arm"/>
+                        <path d="M140 108Q168 92 169 67" class="wave-arm" style="animation-delay:-.35s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="20" cy="70" r="8"/><circle cx="169" cy="65" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M20 70l-7-7M20 70l-2-10M20 70l8-7"/><path d="M169 65l-8-6M169 65l-2-10M169 65l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="71" cy="106" rx="7" ry="4.5" fill="#fda4af"/><ellipse class="blush" cx="119" cy="106" rx="7" ry="4.5" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="82" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="83" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M88 108q7 10 14 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M84 106q11 17 22 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="95" cy="112" rx="5.5" ry="7" fill="#064e3b"/>
+                </svg>
+                </div>
+
+                <!-- Tabung reaksi emerald -->
+                <div class="mascot-wrap" data-who="tube" tabindex="0" role="button" aria-label="Tabung reaksi: klik atau geser aku">
+                <svg class="lab-character test-tube" viewBox="0 0 190 185" role="img" aria-label="Maskot tabung reaksi emerald">
+                    <defs>
+                        <linearGradient id="tGlass" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="tLiquid" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="tClip"><path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z"/></clipPath>
+                    </defs>
+                    <ellipse cx="96" cy="173" rx="40" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="url(#tGlass)"/>
+                    <g clip-path="url(#tClip)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M40 102c16-6 28 4 40-1 14-5 26 4 38 0 12-4 20 3 34 0V260H40z" fill="url(#tLiquid)"/>
+                        <circle class="in-bubble" cx="86" cy="140" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1.2s" cx="104" cy="148" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2.1s" cx="95" cy="154" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M76 44V118" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M69 24h54v13H69z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M69 109Q42 96 38 72" class="wave-arm" style="animation-delay:-.55s"/>
+                        <path d="M123 109Q149 94 153 70" class="wave-arm" style="animation-delay:-.9s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="38" cy="70" r="8"/><circle cx="153" cy="68" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M38 70l-7-7M38 70l-2-10M38 70l8-7"/><path d="M153 68l-8-6M153 68l-2-10M153 68l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="77" cy="92" rx="6" ry="4" fill="#fda4af"/><ellipse class="blush" cx="115" cy="92" rx="6" ry="4" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="84" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="85" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M90 96q6 8 12 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M86 94q10 15 20 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="96" cy="99" rx="5" ry="6.5" fill="#064e3b"/>
+                </svg>
+                </div>
+            </div>
+            
+<div class="welcome-badge"><i class="fa-solid fa-flask-vial"></i> CHEMEOWSTRY</div>
+            <h1>Hallo! Welcome to Chemeowstry!</h1>
+            <p>Yuk Belajar Nama Senyawa IUPAC Alkena Bersama Bunga dan Diva yang Siap Menyambutmu</p>
+            <div class="welcome-name">
+                <input type="text" id="studentName" maxlength="20" placeholder="Masukkan nama" autocomplete="name" required>
+                <input type="text" id="studentClass" maxlength="30" placeholder="Masukkan kelas (contoh: XI IPA 1)" autocomplete="off" required style="margin-top:.55rem;">
+            </div>
+            <button type="button" id="startLearningBtn" class="btn btn-primary welcome-start-btn" onclick="startLearning(); return false;" onmouseenter="cheerMascots(true,'Ayo mulai belajar! 🎉')" onmouseleave="cheerMascots(false)" onfocus="cheerMascots(true,'Ayo mulai belajar! 🎉')" onblur="cheerMascots(false)" style="position:relative;z-index:9999;pointer-events:auto;touch-action:manipulation;"><i class="fa-solid fa-arrow-right"></i> Mulai</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation (Matching Flowchart) -->
+        <nav class="sidebar">
+            <div class="nav-section">
+                <div class="nav-section-title">Navigasi Materi</div>
+                <a class="nav-item active" onclick="navigateTo('cover')"><i class="fa-solid fa-house"></i> Cover / Beranda</a>
+                <a class="nav-item" onclick="navigateTo('petunjuk')"><i class="fa-solid fa-list-check"></i> Petunjuk Penggunaan</a>
+                <a class="nav-item" onclick="navigateTo('tujuan')"><i class="fa-solid fa-bullseye"></i> Tujuan & Capaian</a>
+                <a class="nav-item" onclick="navigateTo('petakonsep')"><i class="fa-solid fa-sitemap"></i> Flowchart Media</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">1. Pengantar Alkena</div>
+                <a class="nav-item" onclick="navigateTo('pengantar1')"><i class="fa-solid fa-atom"></i> Pengertian Hidrokarbon</a>
+                <a class="nav-item" onclick="navigateTo('pengantar2')"><i class="fa-solid fa-dna"></i> Pengertian Alkena</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">2. Tata Nama Alkena</div>
+                <a class="nav-item" onclick="navigateTo('aturan')"><i class="fa-solid fa-book-open"></i> Aturan & Eksplorasi Molekul</a>
+                <a class="nav-item" onclick="navigateTo('latihan')"><i class="fa-solid fa-gamepad"></i> Kesimpulan</a>
+            </div>
+
+        </nav>
+
+        <!-- Main Dynamic Content Area -->
+        <main class="content-area">
+
+            <!-- PAGE: COVER -->
+            <div id="cover" class="page-content active">
+                <div style="text-align: center; padding: 2rem 1rem;">
+                    <p id="coverGreeting" style="display:none;font-weight:600;color:var(--primary-dark);margin-bottom:.8rem;"></p>
+                    <span style="background: var(--primary-light); color: var(--primary-dark); padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 0.85rem;">MEDIA PEMBELAJARAN INTERAKTIF</span>
+                    <h1 style="font-size: 2.2rem; color: var(--primary-dark); margin: 1rem 0;">TATA NAMA SENYAWA IUPAC ALKENA</h1>
+                    <p style="font-size: 1.1rem; max-width: 650px; margin: 0 auto 2rem auto; color: var(--gray);">
+                        Simulasi Interaktif Kimia Organik Kelas XI SMA/MA untuk Memahami Aturan dan Penamaan Alkena Secara Visual & Sistematis.
+                    </p>
+                    
+                    <div class="chem-box" style="background: #ecfdf5; border: 2px solid var(--primary);">
+                        <div class="chem-structure" style="font-size: 1.8rem;">
+                            CH<sub>3</sub> — CH = CH — CH<sub>3</sub>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--primary-dark); margin-top: 10px;">Contoh: <i>2-butena</i></p>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 15px;">
+                        <button class="btn btn-primary" onclick="navigateTo('petunjuk')"><i class="fa-solid fa-play"></i> Mulai Pembelajaran</button>
+                        <button class="btn btn-outline" onclick="navigateTo('petakonsep')"><i class="fa-solid fa-sitemap"></i> Lihat Flowchart Media</button>
+                    </div>
+                <div class="guide-panel mascot-guide" id="guide-panel-cover" style="margin-top:1.25rem;">
+                    <div class="guide-mascot-scene" aria-hidden="true">
+                        <div class="mascot-wrap" data-who="flask">
+                <svg class="lab-character flask" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="fGlass-cover" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="fLiquid-cover" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="fClip-cover"><path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z"/></clipPath>
+                    </defs>
+                    <ellipse cx="95" cy="173" rx="54" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="url(#fGlass-cover)"/>
+                    <g clip-path="url(#fClip-cover)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M20 119c17-7 31 4 45-1 16-6 29 5 44 0 16-5 29 5 56 0V240H20z" fill="url(#fLiquid-cover)"/>
+                        <circle class="in-bubble" cx="72" cy="150" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1s" cx="110" cy="146" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2s" cx="94" cy="152" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M80 34V66L57 112" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M74 20h42v11H74z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M49 109Q23 96 20 72" class="wave-arm"/>
+                        <path d="M140 108Q168 92 169 67" class="wave-arm" style="animation-delay:-.35s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="20" cy="70" r="8"/><circle cx="169" cy="65" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M20 70l-7-7M20 70l-2-10M20 70l8-7"/><path d="M169 65l-8-6M169 65l-2-10M169 65l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="71" cy="106" rx="7" ry="4.5" fill="#fda4af"/><ellipse class="blush" cx="119" cy="106" rx="7" ry="4.5" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="82" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="83" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M88 108q7 10 14 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M84 106q11 17 22 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="95" cy="112" rx="5.5" ry="7" fill="#064e3b"/>
+                </svg>
+                </div>
+                        <div class="mascot-wrap" data-who="tube">
+                <svg class="lab-character test-tube" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="tGlass-cover" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="tLiquid-cover" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="tClip-cover"><path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z"/></clipPath>
+                    </defs>
+                    <ellipse cx="96" cy="173" rx="40" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="url(#tGlass-cover)"/>
+                    <g clip-path="url(#tClip-cover)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M40 102c16-6 28 4 40-1 14-5 26 4 38 0 12-4 20 3 34 0V260H40z" fill="url(#tLiquid-cover)"/>
+                        <circle class="in-bubble" cx="86" cy="140" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1.2s" cx="104" cy="148" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2.1s" cx="95" cy="154" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M76 44V118" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M69 24h54v13H69z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M69 109Q42 96 38 72" class="wave-arm" style="animation-delay:-.55s"/>
+                        <path d="M123 109Q149 94 153 70" class="wave-arm" style="animation-delay:-.9s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="38" cy="70" r="8"/><circle cx="153" cy="68" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M38 70l-7-7M38 70l-2-10M38 70l8-7"/><path d="M153 68l-8-6M153 68l-2-10M153 68l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="77" cy="92" rx="6" ry="4" fill="#fda4af"/><ellipse class="blush" cx="115" cy="92" rx="6" ry="4" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="84" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="85" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M90 96q6 8 12 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M86 94q10 15 20 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="96" cy="99" rx="5" ry="6.5" fill="#064e3b"/>
+                </svg>
+                </div>
+                    </div>
+                    <div class="guide-mascot-dialog">
+                        <strong>Bunga:</strong>
+                        <p>Yuk mulai belajar! Klik tombol <b>Mulai Pembelajaran</b> untuk masuk ke materi.</p>
+                        <strong>Diva:</strong>
+                        <p>Aku akan menemanimu mengikuti setiap langkah pembelajaran.</p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+            <!-- PAGE: PETUNJUK -->
+            <div id="petunjuk" class="page-content">
+    <h2><i class="fa-solid fa-list-check"></i> Petunjuk Penggunaan Media</h2>
+    <p>Ikuti langkah-langkah berikut agar penggunaan media pembelajaran interaktif Tata Nama Senyawa IUPAC Alkena lebih mudah dan terarah.</p>
+
+    <div class="card-grid">
+        <div class="card guide-card" tabindex="0" data-tip="Klik lagi untuk menyorot langkah ini. Gunakan tombol navigasi untuk berpindah bagian.">
+            <div class="card-icon"><i class="fa-solid fa-play"></i></div>
+            <h3>1. Mulai Pembelajaran</h3>
+            <p>Klik tombol <b>Mulai</b> pada halaman awal untuk masuk ke media pembelajaran. Setelah itu, gunakan menu yang tersedia untuk mengikuti materi.</p>
+        </div>
+
+        <div class="card guide-card" tabindex="0" data-tip="Arahkan kursor atau klik untuk melihat fungsi navigasi dengan lebih jelas.">
+            <div class="card-icon"><i class="fa-solid fa-compass"></i></div>
+            <h3>2. Gunakan Navigasi</h3>
+            <p>Gunakan menu navigasi untuk membuka <b>Cover/Beranda, Petunjuk Penggunaan, Tujuan & Capaian, Flowchart Media</b>, serta materi tentang alkena.</p>
+        </div>
+
+        <div class="card guide-card" tabindex="0" data-tip="Klik kartu ini untuk menandai urutan belajar yang sedang kamu pahami.">
+            <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+            <h3>3. Pelajari Materi</h3>
+            <p>Pelajari materi secara berurutan mulai dari <b>Pengertian Hidrokarbon</b>, <b>Pengertian Alkena</b>, hingga <b>Aturan Tata Nama IUPAC Alkena</b>.</p>
+        </div>
+
+        <div class="card guide-card" tabindex="0" data-tip="Klik untuk mengingat tiga aksi utama: pilih, amati, lalu eksplorasi struktur.">
+            <div class="card-icon"><i class="fa-solid fa-microscope"></i></div>
+            <h3>4. Eksplorasi Molekul</h3>
+            <p>Pada bagian <b>Eksplorasi Molekul</b>, amati model molekul (tanpa nama), lalu isi langkahnya satu per satu: arah penomoran C1, rantai induk, posisi ikatan rangkap, cabang, hingga nama IUPAC. Tekan <b>Cek Jawaban</b> untuk melanjutkan.</p>
+        </div>
+
+        <div class="card guide-card" tabindex="0" data-tip="Klik untuk menampilkan pengingat singkat sebelum kamu melanjutkan penyelidikan.">
+            <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <h3>5. Gunakan Petunjuk</h3>
+            <p>Jika mengalami kesulitan, baca petunjuk kecil di bawah setiap pertanyaan dan kembali ke aturan IUPAC di atas.</p>
+        </div>
+
+        <div class="card guide-card" tabindex="0" data-tip="Klik untuk menegaskan bahwa jawaban ditulis berdasarkan aturan IUPAC yang sudah dipelajari.">
+            <div class="card-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+            <h3>6. Kerjakan Kesimpulan</h3>
+            <p>Setelah memahami materi dan eksplorasi molekul, lanjutkan ke bagian <b>Kesimpulan</b>. Tuliskan jawaban berdasarkan aturan tata nama IUPAC alkena yang telah dipelajari.</p>
+        </div>
+    </div>
+
+    <div style="background:#ecfdf5;border-left:4px solid var(--primary);padding:1.2rem;border-radius:8px;margin-top:1.5rem;">
+        <h3 style="color:var(--primary-dark);margin-top:0;"><i class="fa-solid fa-circle-info"></i> Tips Penggunaan</h3>
+        <p style="margin-bottom:0;">Pelajari materi secara berurutan, amati struktur molekul dengan teliti, dan ikuti setiap langkah sebelum menentukan nama IUPAC. Gunakan tombol navigasi untuk berpindah ke bagian berikutnya.</p>
+    </div>
+
+    <div style="margin-top:1.5rem;text-align:right;">
+        <button class="btn btn-primary" onclick="navigateTo('tujuan')">Lanjut: Tujuan Pembelajaran <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="guide-panel mascot-guide" id="guide-panel-petunjuk" style="margin-top:1.25rem;">
+                    <div class="guide-mascot-scene" aria-hidden="true">
+                        <div class="mascot-wrap" data-who="flask">
+                <svg class="lab-character flask" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="fGlass-petunjuk" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="fLiquid-petunjuk" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="fClip-petunjuk"><path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z"/></clipPath>
+                    </defs>
+                    <ellipse cx="95" cy="173" rx="54" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="url(#fGlass-petunjuk)"/>
+                    <g clip-path="url(#fClip-petunjuk)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M20 119c17-7 31 4 45-1 16-6 29 5 44 0 16-5 29 5 56 0V240H20z" fill="url(#fLiquid-petunjuk)"/>
+                        <circle class="in-bubble" cx="72" cy="150" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1s" cx="110" cy="146" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2s" cx="94" cy="152" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M80 34V66L57 112" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M74 20h42v11H74z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M49 109Q23 96 20 72" class="wave-arm"/>
+                        <path d="M140 108Q168 92 169 67" class="wave-arm" style="animation-delay:-.35s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="20" cy="70" r="8"/><circle cx="169" cy="65" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M20 70l-7-7M20 70l-2-10M20 70l8-7"/><path d="M169 65l-8-6M169 65l-2-10M169 65l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="71" cy="106" rx="7" ry="4.5" fill="#fda4af"/><ellipse class="blush" cx="119" cy="106" rx="7" ry="4.5" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="82" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="83" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M88 108q7 10 14 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M84 106q11 17 22 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="95" cy="112" rx="5.5" ry="7" fill="#064e3b"/>
+                </svg>
+                </div>
+                        <div class="mascot-wrap" data-who="tube">
+                <svg class="lab-character test-tube" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="tGlass-petunjuk" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="tLiquid-petunjuk" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="tClip-petunjuk"><path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z"/></clipPath>
+                    </defs>
+                    <ellipse cx="96" cy="173" rx="40" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="url(#tGlass-petunjuk)"/>
+                    <g clip-path="url(#tClip-petunjuk)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M40 102c16-6 28 4 40-1 14-5 26 4 38 0 12-4 20 3 34 0V260H40z" fill="url(#tLiquid-petunjuk)"/>
+                        <circle class="in-bubble" cx="86" cy="140" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1.2s" cx="104" cy="148" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2.1s" cx="95" cy="154" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M76 44V118" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M69 24h54v13H69z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M69 109Q42 96 38 72" class="wave-arm" style="animation-delay:-.55s"/>
+                        <path d="M123 109Q149 94 153 70" class="wave-arm" style="animation-delay:-.9s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="38" cy="70" r="8"/><circle cx="153" cy="68" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M38 70l-7-7M38 70l-2-10M38 70l8-7"/><path d="M153 68l-8-6M153 68l-2-10M153 68l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="77" cy="92" rx="6" ry="4" fill="#fda4af"/><ellipse class="blush" cx="115" cy="92" rx="6" ry="4" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="84" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="85" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M90 96q6 8 12 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M86 94q10 15 20 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="96" cy="99" rx="5" ry="6.5" fill="#064e3b"/>
+                </svg>
+                </div>
+                    </div>
+                    <div class="guide-mascot-dialog">
+                        <strong>Bunga:</strong>
+                        <p>Baca petunjuk ini dulu supaya kamu tahu cara menggunakan media.</p>
+                        <strong>Diva:</strong>
+                        <p>Kalau sudah paham, klik <b>Lanjut: Tujuan Pembelajaran</b>.</p>
+                    </div>
+                </div>
+
+    </div>
+</div>
+
+<!-- PAGE: TUJUAN -->
+            <div id="tujuan" class="page-content">
+                <h2><i class="fa-solid fa-bullseye"></i> Tujuan & Capaian Pembelajaran</h2>
+                
+                <div style="background: #f0fdf4; border-left: 4px solid var(--primary); padding: 1.2rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--primary-dark); margin-top:0;">Capaian Pembelajaran (CP)</h3>
+                    <p style="margin: 0;">Peserta didik mampu menganalisis struktur, tata nama, sifat, dan kegunaan senyawa hidrokarbon (khususnya Alkena) berdasarkan aturan IUPAC secara tepat dan kritis.</p>
+                </div>
+
+                <h3>Tujuan Pembelajaran Khusus:</h3>
+                <div id="tpList" style="display:grid; gap:.7rem; margin-bottom:1.5rem;">
+                <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                    <li>Siswa dapat mengidentifikasi ciri khas ikatan rangkap dua (C=C) pada alkena.</li>
+                    <li>Siswa dapat menentukan rantai induk dan melakukan penomoran pada struktur alkena sesuai aturan IUPAC.</li>
+                    <li>Siswa dapat mengidentifikasi jenis serta posisi substituen pada rantai utama alkena.</li>
+                    <li>Siswa dapat memberi nama senyawa alkena berdasarkan struktur yang diberikan sesuai aturan IUPAC.</li>
+                </ul>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: right;">
+                    <button class="btn btn-primary" onclick="navigateTo('petakonsep')">Lanjut: Flowchart Media <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="guide-panel mascot-guide" id="guide-panel-tujuan" style="margin-top:1.25rem;">
+                    <div class="guide-mascot-scene" aria-hidden="true">
+                        <div class="mascot-wrap" data-who="flask">
+                <svg class="lab-character flask" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="fGlass-tujuan" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="fLiquid-tujuan" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="fClip-tujuan"><path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z"/></clipPath>
+                    </defs>
+                    <ellipse cx="95" cy="173" rx="54" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="url(#fGlass-tujuan)"/>
+                    <g clip-path="url(#fClip-tujuan)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M20 119c17-7 31 4 45-1 16-6 29 5 44 0 16-5 29 5 56 0V240H20z" fill="url(#fLiquid-tujuan)"/>
+                        <circle class="in-bubble" cx="72" cy="150" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1s" cx="110" cy="146" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2s" cx="94" cy="152" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M80 34V66L57 112" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M74 20h42v11H74z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M49 109Q23 96 20 72" class="wave-arm"/>
+                        <path d="M140 108Q168 92 169 67" class="wave-arm" style="animation-delay:-.35s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="20" cy="70" r="8"/><circle cx="169" cy="65" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M20 70l-7-7M20 70l-2-10M20 70l8-7"/><path d="M169 65l-8-6M169 65l-2-10M169 65l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="71" cy="106" rx="7" ry="4.5" fill="#fda4af"/><ellipse class="blush" cx="119" cy="106" rx="7" ry="4.5" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="82" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="83" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M88 108q7 10 14 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M84 106q11 17 22 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="95" cy="112" rx="5.5" ry="7" fill="#064e3b"/>
+                </svg>
+                </div>
+                        <div class="mascot-wrap" data-who="tube">
+                <svg class="lab-character test-tube" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="tGlass-tujuan" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="tLiquid-tujuan" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="tClip-tujuan"><path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z"/></clipPath>
+                    </defs>
+                    <ellipse cx="96" cy="173" rx="40" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="url(#tGlass-tujuan)"/>
+                    <g clip-path="url(#tClip-tujuan)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M40 102c16-6 28 4 40-1 14-5 26 4 38 0 12-4 20 3 34 0V260H40z" fill="url(#tLiquid-tujuan)"/>
+                        <circle class="in-bubble" cx="86" cy="140" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1.2s" cx="104" cy="148" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2.1s" cx="95" cy="154" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M76 44V118" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M69 24h54v13H69z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M69 109Q42 96 38 72" class="wave-arm" style="animation-delay:-.55s"/>
+                        <path d="M123 109Q149 94 153 70" class="wave-arm" style="animation-delay:-.9s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="38" cy="70" r="8"/><circle cx="153" cy="68" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M38 70l-7-7M38 70l-2-10M38 70l8-7"/><path d="M153 68l-8-6M153 68l-2-10M153 68l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="77" cy="92" rx="6" ry="4" fill="#fda4af"/><ellipse class="blush" cx="115" cy="92" rx="6" ry="4" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="84" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="85" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M90 96q6 8 12 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M86 94q10 15 20 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="96" cy="99" rx="5" ry="6.5" fill="#064e3b"/>
+                </svg>
+                </div>
+                    </div>
+                    <div class="guide-mascot-dialog">
+                        <strong>Bunga:</strong>
+                        <p>Perhatikan tujuan dan capaian yang akan kamu capai.</p>
+                        <strong>Diva:</strong>
+                        <p>Kalau sudah siap, klik <b>Lanjut: Flowchart Media</b>.</p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+            <!-- PAGE: PETA KONSEP -->
+            <div id="petakonsep" class="page-content">
+                <h2><i class="fa-solid fa-sitemap"></i> Flowchart Media</h2>
+                <p style="text-align: center;">Berikut adalah alur alur belajar tata nama alkena sesuai flowchart sistem:</p>
+
+                <div class="flowchart-view">
+                    <div class="flow-node" onclick="navigateTo('cover')">COVER / BERANDA</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="flow-node" onclick="navigateTo('petunjuk')">PETUNJUK PENGGUNAAN</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="flow-node" onclick="navigateTo('tujuan')">TUJUAN & CAPAIAN PEMBELAJARAN</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="flow-node" style="background: var(--primary); color: white;">FLOWCHART MEDIA</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    
+                    <div class="flow-split">
+                        <div style="display:flex; flex-direction:column; align-items:center; gap:8px; width:45%;">
+                            <div class="flow-node" style="width:100%;" onclick="navigateTo('pengantar1')">Pengantar Alkena</div>
+                            <small style="color:var(--gray);">• Pengertian Hidrokarbon<br>• Pengertian Alkena</small>
+                        </div>
+                        <div style="display:flex; flex-direction:column; align-items:center; gap:8px; width:45%;">
+                            <div class="flow-node" style="width:100%;" onclick="navigateTo('aturan')">Tata Nama Alkena</div>
+                            <small style="color:var(--gray);">• Aturan Dasar IUPAC<br>• Penentuan Rantai & Penomoran</small>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="flow-node" onclick="navigateTo('aturan')">Eksplorasi Molekul</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="flow-node" onclick="navigateTo('latihan')">Kesimpulan</div>
+                </div>
+
+                <div class="next-step-panel" style="margin-top:1.5rem;">
+                    <div>
+                        <h3 style="margin:0 0 .35rem;color:var(--primary-dark);"><i class="fa-solid fa-compass"></i> Langkah Berikutnya</h3>
+                        <p style="margin:0;color:var(--gray);">Lanjutkan ke Pengantar Alkena untuk mulai mempelajari materi.</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('pengantar1')">
+                        Lanjut: Pengantar Alkena <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                <div class="guide-panel mascot-guide" id="guide-panel-petakonsep" style="margin-top:1.25rem;">
+                    <div class="guide-mascot-scene" aria-hidden="true">
+                        <div class="mascot-wrap" data-who="flask">
+                <svg class="lab-character flask" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="fGlass-petakonsep" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="fLiquid-petakonsep" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="fClip-petakonsep"><path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z"/></clipPath>
+                    </defs>
+                    <ellipse cx="95" cy="173" rx="54" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="url(#fGlass-petakonsep)"/>
+                    <g clip-path="url(#fClip-petakonsep)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M20 119c17-7 31 4 45-1 16-6 29 5 44 0 16-5 29 5 56 0V240H20z" fill="url(#fLiquid-petakonsep)"/>
+                        <circle class="in-bubble" cx="72" cy="150" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1s" cx="110" cy="146" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2s" cx="94" cy="152" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M80 34V66L57 112" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M74 20h42v11H74z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M49 109Q23 96 20 72" class="wave-arm"/>
+                        <path d="M140 108Q168 92 169 67" class="wave-arm" style="animation-delay:-.35s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="20" cy="70" r="8"/><circle cx="169" cy="65" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M20 70l-7-7M20 70l-2-10M20 70l8-7"/><path d="M169 65l-8-6M169 65l-2-10M169 65l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="71" cy="106" rx="7" ry="4.5" fill="#fda4af"/><ellipse class="blush" cx="119" cy="106" rx="7" ry="4.5" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="82" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="83" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M88 108q7 10 14 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M84 106q11 17 22 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="95" cy="112" rx="5.5" ry="7" fill="#064e3b"/>
+                </svg>
+                </div>
+                        <div class="mascot-wrap" data-who="tube">
+                <svg class="lab-character test-tube" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="tGlass-petakonsep" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="tLiquid-petakonsep" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="tClip-petakonsep"><path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z"/></clipPath>
+                    </defs>
+                    <ellipse cx="96" cy="173" rx="40" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="url(#tGlass-petakonsep)"/>
+                    <g clip-path="url(#tClip-petakonsep)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M40 102c16-6 28 4 40-1 14-5 26 4 38 0 12-4 20 3 34 0V260H40z" fill="url(#tLiquid-petakonsep)"/>
+                        <circle class="in-bubble" cx="86" cy="140" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1.2s" cx="104" cy="148" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2.1s" cx="95" cy="154" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M76 44V118" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M69 24h54v13H69z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M69 109Q42 96 38 72" class="wave-arm" style="animation-delay:-.55s"/>
+                        <path d="M123 109Q149 94 153 70" class="wave-arm" style="animation-delay:-.9s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="38" cy="70" r="8"/><circle cx="153" cy="68" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M38 70l-7-7M38 70l-2-10M38 70l8-7"/><path d="M153 68l-8-6M153 68l-2-10M153 68l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="77" cy="92" rx="6" ry="4" fill="#fda4af"/><ellipse class="blush" cx="115" cy="92" rx="6" ry="4" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="84" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="85" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M90 96q6 8 12 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M86 94q10 15 20 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="96" cy="99" rx="5" ry="6.5" fill="#064e3b"/>
+                </svg>
+                </div>
+                    </div>
+                    <div class="guide-mascot-dialog">
+                        <strong>Bunga:</strong>
+                        <p>Ini adalah <b>Flowchart Media</b>. Ikuti alurnya dari awal sampai akhir.</p>
+                        <strong>Diva:</strong>
+                        <p>Kalau sudah melihat alurnya, klik <b>Lanjut: Pengantar Alkena</b>.</p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+            <!-- PAGE: PENGANTAR 1 -->
+            <div id="pengantar1" class="page-content">
+                <h2><i class="fa-solid fa-atom"></i> 1. Pengertian Hidrokarbon</h2>
+<p><b>Hidrokarbon</b> adalah senyawa organik yang seluruh molekulnya hanya terdiri dari dua jenis atom, yaitu atom <b>Karbon (C)</b> dan atom <b>Hidrogen (H)</b>.</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Hidrokarbon Jenuh</h3>
+                        <p>Hidrokarbon yang ikatan antar atom karbonnya <b>tunggal semua</b>. Contohnya: <b>Alkana</b>.</p>
+                        <div style="margin-top:1rem;padding:1rem;border-radius:12px;background:#f8fafc;border:1px solid #cbd5e1;text-align:center;">
+                            <div style="font-size:1.45rem;font-weight:800;color:var(--primary-dark);">CH<sub>3</sub> — CH<sub>3</sub></div>
+                            <div style="margin-top:.45rem;font-size:.82rem;color:var(--gray);"><b>1 ikatan</b> (ikatan tunggal C—C)</div>
+                        </div>
+                    </div>
+                    <div class="card" style="border-color: var(--primary);">
+                        <h3>Hidrokarbon Tak Jenuh</h3>
+                        <p>Hidrokarbon yang punya <b>ikatan rangkap</b> pada rantai karbonnya. Contohnya: <b>Alkena</b> dan <b>Alkuna</b>.</p>
+                        <div style="margin-top:1rem;display:grid;gap:.6rem;">
+                            <div style="padding:.8rem;border-radius:12px;background:#f0fdf4;border:1px solid #a7f3d0;text-align:center;">
+                                <div style="font-size:1.25rem;font-weight:800;color:var(--primary-dark);">CH<sub>2</sub> = CH<sub>2</sub></div>
+                                <div style="margin-top:.3rem;font-size:.82rem;color:var(--gray);"><b>2 ikatan</b> (ikatan rangkap dua C=C)</div>
+                            </div>
+                            <div style="padding:.8rem;border-radius:12px;background:#f0fdf4;border:1px solid #a7f3d0;text-align:center;">
+                                <div style="font-size:1.25rem;font-weight:800;color:var(--primary-dark);">CH ≡ CH</div>
+                                <div style="margin-top:.3rem;font-size:.82rem;color:var(--gray);"><b>3 ikatan</b> (ikatan rangkap tiga C≡C)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:1.25rem;background:#f8fafc;border:1px solid #cbd5e1;">
+                    <h3 style="margin-top:0;"><i class="fa-solid fa-pen"></i> Kesimpulanmu</h3>
+                    <p>Amati visual di atas, lalu tuliskan kesimpulanmu tentang perbedaan hidrokarbon jenuh dan tak jenuh.</p>
+                    <textarea id="kesimpulanJenuhTakJenuh" class="essay-textarea" placeholder="Tuliskan kesimpulanmu dengan bahasamu sendiri..." aria-label="Kesimpulan perbedaan hidrokarbon jenuh dan tak jenuh"></textarea>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: right;">
+                    <button class="btn btn-primary" onclick="navigateTo('pengantar2')">Lanjut: Pengertian Alkena <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="guide-panel mascot-guide" id="guide-panel-pengantar1" style="margin-top:1.25rem;">
+                    <div class="guide-mascot-scene" aria-hidden="true">
+                        <div class="mascot-wrap" data-who="flask">
+                <svg class="lab-character flask" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="fGlass-pengantar1" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="fLiquid-pengantar1" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="fClip-pengantar1"><path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z"/></clipPath>
+                    </defs>
+                    <ellipse cx="95" cy="173" rx="54" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="url(#fGlass-pengantar1)"/>
+                    <g clip-path="url(#fClip-pengantar1)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M20 119c17-7 31 4 45-1 16-6 29 5 44 0 16-5 29 5 56 0V240H20z" fill="url(#fLiquid-pengantar1)"/>
+                        <circle class="in-bubble" cx="72" cy="150" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1s" cx="110" cy="146" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2s" cx="94" cy="152" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M80 34V66L57 112" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M74 20h42v11H74z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M49 109Q23 96 20 72" class="wave-arm"/>
+                        <path d="M140 108Q168 92 169 67" class="wave-arm" style="animation-delay:-.35s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="20" cy="70" r="8"/><circle cx="169" cy="65" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M20 70l-7-7M20 70l-2-10M20 70l8-7"/><path d="M169 65l-8-6M169 65l-2-10M169 65l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="71" cy="106" rx="7" ry="4.5" fill="#fda4af"/><ellipse class="blush" cx="119" cy="106" rx="7" ry="4.5" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="82" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="83" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M88 108q7 10 14 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M84 106q11 17 22 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="95" cy="112" rx="5.5" ry="7" fill="#064e3b"/>
+                </svg>
+                </div>
+                        <div class="mascot-wrap" data-who="tube">
+                <svg class="lab-character test-tube" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="tGlass-pengantar1" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="tLiquid-pengantar1" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="tClip-pengantar1"><path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z"/></clipPath>
+                    </defs>
+                    <ellipse cx="96" cy="173" rx="40" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="url(#tGlass-pengantar1)"/>
+                    <g clip-path="url(#tClip-pengantar1)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M40 102c16-6 28 4 40-1 14-5 26 4 38 0 12-4 20 3 34 0V260H40z" fill="url(#tLiquid-pengantar1)"/>
+                        <circle class="in-bubble" cx="86" cy="140" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1.2s" cx="104" cy="148" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2.1s" cx="95" cy="154" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M76 44V118" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M69 24h54v13H69z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M69 109Q42 96 38 72" class="wave-arm" style="animation-delay:-.55s"/>
+                        <path d="M123 109Q149 94 153 70" class="wave-arm" style="animation-delay:-.9s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="38" cy="70" r="8"/><circle cx="153" cy="68" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M38 70l-7-7M38 70l-2-10M38 70l8-7"/><path d="M153 68l-8-6M153 68l-2-10M153 68l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="77" cy="92" rx="6" ry="4" fill="#fda4af"/><ellipse class="blush" cx="115" cy="92" rx="6" ry="4" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="84" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="85" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M90 96q6 8 12 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M86 94q10 15 20 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="96" cy="99" rx="5" ry="6.5" fill="#064e3b"/>
+                </svg>
+                </div>
+                    </div>
+                    <div class="guide-mascot-dialog">
+                        <strong>Bunga:</strong>
+                        <p>Amati perbedaan hidrokarbon jenuh dan tak jenuh.</p>
+                        <strong>Diva:</strong>
+                        <p>Kalau sudah paham, lanjut ke <b>Pengertian Alkena</b>.</p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+            <!-- PAGE: PENGANTAR 2 -->
+            <div id="pengantar2" class="page-content">
+                <h2><i class="fa-solid fa-dna"></i> 2. Pengertian Alkena</h2>
+<p><b>Alkena</b> adalah senyawa hidrokarbon tak jenuh alifatik yang memiliki setidaknya <b>satu ikatan rangkap dua (C=C)</b> antar atom karbonnya.</p>
+
+                <div class="control-panel" style="margin:1.25rem 0; background:linear-gradient(135deg,#eff6ff,#f8fafc); border:1px solid #bfdbfe;">
+                    <h3 style="margin-top:0;color:var(--primary-dark);"><i class="fa-solid fa-magnifying-glass"></i> Coba Identifikasi</h3>
+                    <p><b>Perhatikan beberapa struktur berikut.</b> Pilih struktur yang memiliki <b>ikatan rangkap dua (C=C)</b> dan termasuk alkena.</p>
+
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.75rem;margin:1rem 0;">
+                        <label style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:1rem;cursor:pointer;text-align:center;">
+                            <input type="checkbox" name="identifikasiAlkena" value="alkena" style="margin-right:6px;">
+                            <b>Struktur A</b><br><span style="font-size:1.05rem;">CH<sub>2</sub>=CH<sub>2</sub></span>
+                        </label>
+                        <label style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:1rem;cursor:pointer;text-align:center;">
+                            <input type="checkbox" name="identifikasiAlkena" value="alkana" style="margin-right:6px;">
+                            <b>Struktur B</b><br><span style="font-size:1.05rem;">CH<sub>3</sub>—CH<sub>3</sub></span>
+                        </label>
+                        <label style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:1rem;cursor:pointer;text-align:center;">
+                            <input type="checkbox" name="identifikasiAlkena" value="alkena" style="margin-right:6px;">
+                            <b>Struktur C</b><br><span style="font-size:1.05rem;">CH<sub>3</sub>—CH=CH<sub>2</sub></span>
+                        </label>
+                        <label style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:1rem;cursor:pointer;text-align:center;">
+                            <input type="checkbox" name="identifikasiAlkena" value="alkana" style="margin-right:6px;">
+                            <b>Struktur D</b><br><span style="font-size:1.05rem;">CH<sub>3</sub>—CH<sub>2</sub>—CH<sub>3</sub></span>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary" type="button" onclick="cekIdentifikasiAlkena()"><i class="fa-solid fa-check"></i> Periksa Jawaban</button>
+                    <div id="feedbackIdentifikasiAlkena" style="margin-top:1rem;"></div>
+                </div>
+                
+                <div style="background: #f8fafc; padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--light-gray); margin: 1rem 0;">
+                    <h3 style="margin-top:0;">Rumus Umum Alkena (Satu Ikatan Rangkap)</h3>
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary-dark); text-align: center; margin: 10px 0;">C<sub>n</sub>H<sub>2n</sub></div>
+                    <p style="text-align: center; font-size: 0.85rem; color: var(--gray);">Keterangan: n adalah jumlah atom karbon (n ≥ 2).</p>
+                </div>
+                <div class="card" style="margin:1rem 0;border:1px solid #a7f3d0;background:#f0fdf4;">
+                    <h3 style="margin-top:0;color:var(--primary-dark);"><i class="fa-solid fa-calculator"></i> Contoh Pengerjaan Rumus Umum Alkena</h3>
+                    <p><b>Soal:</b> Jika suatu alkena memiliki 4 atom karbon, tentukan rumus molekulnya!</p>
+                    <ol style="padding-left:1.3rem;">
+                        <li><b>Tentukan jumlah atom karbon.</b><br>Diketahui jumlah atom C = 4, sehingga <b>n = 4</b>.</li>
+                        <li><b>Tuliskan rumus umum alkena.</b><br>C<sub>n</sub>H<sub>2n</sub></li>
+                        <li><b>Masukkan nilai n = 4.</b><br>C<sub>4</sub>H<sub>2 × 4</sub></li>
+                        <li><b>Hitung jumlah atom hidrogen.</b><br>2 × 4 = 8, sehingga diperoleh C<sub>4</sub>H<sub>8</sub>.</li>
+                    </ol>
+                    <p style="margin-bottom:0;"><b>Jadi, rumus molekul alkena dengan 4 atom karbon adalah C<sub>4</sub>H<sub>8</sub>, yaitu butena.</b></p>
+                </div>
+                <div class="card" style="margin:1rem 0;">
+                    <h3 style="margin-top:0;color:var(--primary-dark);">Daftar Nama Rantai Karbon (Metana sampai Dekana)</h3>
+                    <p>Nama alkana berikut menjadi nama dasar rantai karbon. Dalam tata nama alkena, akhiran <b>-ana</b> diubah menjadi <b>-ena</b>.</p>
+                    <table style="width:100%;border-collapse:collapse;margin-top:1rem;">
+                        <thead><tr style="background:var(--primary-light);color:var(--primary-dark);">
+                            <th style="padding:8px;border:1px solid #cbd5e1;">Jumlah C</th>
+                            <th style="padding:8px;border:1px solid #cbd5e1;">Rumus Molekul Alkana</th>
+                            <th style="padding:8px;border:1px solid #cbd5e1;">Nama</th>
+                        </tr></thead>
+                        <tbody>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">1</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">CH<sub>4</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Metana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">2</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>2</sub>H<sub>6</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Etana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">3</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>3</sub>H<sub>8</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Propana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">4</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>4</sub>H<sub>10</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Butana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">5</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>5</sub>H<sub>12</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Pentana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">6</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>6</sub>H<sub>14</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Heksana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">7</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>7</sub>H<sub>16</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Heptana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">8</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>8</sub>H<sub>18</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Oktana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">9</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>9</sub>H<sub>20</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Nonana</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">10</td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">C<sub>10</sub>H<sub>22</sub></td><td style="padding:8px;border:1px solid #cbd5e1;text-align:center;">Dekana</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: right;">
+                    <button class="btn btn-primary" onclick="navigateTo('aturan')">Lanjut: Aturan Tata Nama IUPAC <i class="fa-solid fa-arrow-right"></i></button>
+                <div class="guide-panel mascot-guide" id="guide-panel-pengantar2" style="margin-top:1.25rem;">
+                    <div class="guide-mascot-scene" aria-hidden="true">
+                        <div class="mascot-wrap" data-who="flask">
+                <svg class="lab-character flask" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="fGlass-pengantar2" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="fLiquid-pengantar2" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="fClip-pengantar2"><path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z"/></clipPath>
+                    </defs>
+                    <ellipse cx="95" cy="173" rx="54" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="url(#fGlass-pengantar2)"/>
+                    <g clip-path="url(#fClip-pengantar2)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M20 119c17-7 31 4 45-1 16-6 29 5 44 0 16-5 29 5 56 0V240H20z" fill="url(#fLiquid-pengantar2)"/>
+                        <circle class="in-bubble" cx="72" cy="150" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1s" cx="110" cy="146" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2s" cx="94" cy="152" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M80 34V66L57 112" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M74 20h42v48l31 55c9 17-4 34-22 34H65c-18 0-31-17-22-34l31-55V20z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M74 20h42v11H74z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M49 109Q23 96 20 72" class="wave-arm"/>
+                        <path d="M140 108Q168 92 169 67" class="wave-arm" style="animation-delay:-.35s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="20" cy="70" r="8"/><circle cx="169" cy="65" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M20 70l-7-7M20 70l-2-10M20 70l8-7"/><path d="M169 65l-8-6M169 65l-2-10M169 65l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="71" cy="106" rx="7" ry="4.5" fill="#fda4af"/><ellipse class="blush" cx="119" cy="106" rx="7" ry="4.5" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="82" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="83" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="91" rx="9" ry="13" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="92" rx="4" ry="6" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M88 108q7 10 14 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M84 106q11 17 22 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="95" cy="112" rx="5.5" ry="7" fill="#064e3b"/>
+                </svg>
+                </div>
+                        <div class="mascot-wrap" data-who="tube">
+                <svg class="lab-character test-tube" viewBox="0 0 190 185" role="img">
+                    <defs>
+                        <linearGradient id="tGlass-pengantar2" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#d1fae5"/><stop offset=".55" stop-color="#6ee7b7"/><stop offset="1" stop-color="#34d399"/>
+                        </linearGradient>
+                        <linearGradient id="tLiquid-pengantar2" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#047857"/>
+                        </linearGradient>
+                        <clipPath id="tClip-pengantar2"><path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z"/></clipPath>
+                    </defs>
+                    <ellipse cx="96" cy="173" rx="40" ry="7" fill="#065f46" opacity=".16"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="url(#tGlass-pengantar2)"/>
+                    <g clip-path="url(#tClip-pengantar2)"><g class="liquid-level"><g class="liquid-slosh">
+                        <path class="liquid-wave" d="M40 102c16-6 28 4 40-1 14-5 26 4 38 0 12-4 20 3 34 0V260H40z" fill="url(#tLiquid-pengantar2)"/>
+                        <circle class="in-bubble" cx="86" cy="140" r="4" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-1.2s" cx="104" cy="148" r="3" fill="#fff" opacity=".6"/>
+                        <circle class="in-bubble" style="animation-delay:-2.1s" cx="95" cy="154" r="2.5" fill="#fff" opacity=".6"/>
+                    </g></g></g>
+                    <path d="M76 44V118" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M69 24h54v103c0 24-12 39-27 39s-27-15-27-39z" fill="none" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M69 24h54v13H69z" fill="#a7f3d0" stroke="#065f46" stroke-width="4" stroke-linejoin="round"/>
+                    <g stroke="#047857" stroke-width="7" stroke-linecap="round" fill="none">
+                        <path d="M69 109Q42 96 38 72" class="wave-arm" style="animation-delay:-.55s"/>
+                        <path d="M123 109Q149 94 153 70" class="wave-arm" style="animation-delay:-.9s"/>
+                    </g>
+                    <g fill="#fff" stroke="#047857" stroke-width="3"><circle cx="38" cy="70" r="8"/><circle cx="153" cy="68" r="8"/></g>
+                    <g stroke="#047857" stroke-width="4" stroke-linecap="round">
+                        <path d="M38 70l-7-7M38 70l-2-10M38 70l8-7"/><path d="M153 68l-8-6M153 68l-2-10M153 68l8-7"/>
+                    </g>
+                    <ellipse class="blush" cx="77" cy="92" rx="6" ry="4" fill="#fda4af"/><ellipse class="blush" cx="115" cy="92" rx="6" ry="4" fill="#fda4af"/>
+                    <g class="eye eye-l"><ellipse cx="84" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="85" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <g class="eye eye-r"><ellipse cx="108" cy="78" rx="8" ry="12" fill="#fff" stroke="#064e3b" stroke-width="3"/><ellipse class="eye-pupil" cx="109" cy="79" rx="3.5" ry="5.5" fill="#064e3b"/></g>
+                    <path class="m-smile" d="M90 96q6 8 12 0" fill="none" stroke="#064e3b" stroke-width="3.5" stroke-linecap="round"/>
+                    <path class="m-grin" d="M86 94q10 15 20 0z" fill="#064e3b" stroke="#064e3b" stroke-width="2" stroke-linejoin="round"/>
+                    <ellipse class="m-open" cx="96" cy="99" rx="5" ry="6.5" fill="#064e3b"/>
+                </svg>
+                </div>
+                    </div>
+                    <div class="guide-mascot-dialog">
+                        <strong>Bunga:</strong>
+                        <p>Perhatikan ciri alkena dan struktur yang memiliki ikatan rangkap dua C=C.</p>
+                        <strong>Diva:</strong>
+                        <p>Kalau sudah paham, lanjut ke <b>Aturan Tata Nama IUPAC</b>.</p>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+            <!-- PAGE: ATURAN IUPAC -->
+            <div id="aturan" class="page-content">
+                <h2><i class="fa-solid fa-book"></i> Aturan Tata Nama IUPAC Alkena</h2>
+<p>Penamaan senyawa alkena menurut standar internasional IUPAC mengikuti urutan langkah sistematis berikut:</p>
+
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #f9fafb; border-left: 4px solid #10b981; padding: 1rem; border-radius: 6px;">
+                        <b>Langkah 1: Tentukan Rantai Utama / Induk</b>
+                        <p style="margin: 0; font-size: 0.9rem;">Pilih rantai karbon terpanjang yang <b>WAJIB mengandung ikatan rangkap dua (C=C)</b>. Akhiran nama diganti dari <i>-ana</i> menjadi <b>-ena</b>.</p>
+                    </div>
+
+                    <div style="background: #f9fafb; border-left: 4px solid #10b981; padding: 1rem; border-radius: 6px;">
+                        <b>Langkah 2: Penomoran Rantai Induk</b>
+                        <p style="margin: 0; font-size: 0.9rem;">Beri nomor atom C dari ujung rantai yang memberikan <b>nomor sekecil mungkin untuk ikatan rangkap</b> (bukan cabang!).</p>
+                    </div>
+
+                    <div style="background: #f9fafb; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 6px;">
+                        <b>Langkah 3: Tentukan Posisi Ikatan Rangkap</b>
+                        <p style="margin: 0; font-size: 0.9rem;">Posisi ikatan rangkap dinyatakan dengan nomor atom C berikatan rangkap yang memiliki angka lebih kecil.</p>
+                    </div>
+
+                    <div style="background: #f9fafb; border-left: 4px solid #059669; padding: 1rem; border-radius: 6px;">
+                        <b>Langkah 4: Identifikasi Cabang / Alkyl</b>
+                        <p style="margin: 0; font-size: 0.9rem;">Tentukan nama dan nomor posisi cabang. Jika ada beberapa cabang sejenis, gunakan awalan <i>di-, tri-, tetra-</i>, dsb.</p>
+                    </div>
+
+                    <div style="background: #f9fafb; border-left: 4px solid #047857; padding: 1rem; border-radius: 6px;">
+                        <b>Langkah 5: Susun Nama Lengkap Senyawa</b>
+                        <p style="margin: 0; font-size: 0.9rem;">Format Penamaan: <br><code>[Nomor Cabang]-[Nama Cabang]-[Nomor Ikatan Rangkap]-[Nama Rantai Induk]</code></p>
+                    </div>
+                </div>
+
+                <div style="margin-top:1.5rem;padding:1rem;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;">
+                    <h3 style="margin:0;color:var(--primary-dark);"><i class="fa-solid fa-microscope"></i> Latihan Eksplorasi Molekul</h3>
+                    <p style="margin:.35rem 0 0;">Amati molekul di bawah ini <b>tanpa diberi nama</b>. Isi langkah-langkahnya satu per satu sesuai aturan IUPAC di atas, lalu tekan <b>Cek Jawaban</b>.</p>
+                </div>
+
+                <div class="eks-progress" id="eksProgress">
+                    <span class="eks-chip active" id="eksChip0">① Molekul 1 · Rantai lurus</span>
+                    <span class="eks-chip" id="eksChip1">② Molekul 2 · Bercabang</span>
+                </div>
+
+                <div class="eks-layout">
+                    <div class="viewer-card">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;">
+                            <div><b style="color:var(--primary-dark);">🧬 Amati molekulnya</b><div style="font-size:.82rem;color:#64748b;">Putar, zoom, dan klik atom untuk mengenal strukturnya.</div></div>
+                            <span id="eksBadge" style="background:var(--primary-light);color:var(--primary-dark);padding:.35rem .7rem;border-radius:999px;font-size:.8rem;font-weight:700;">Molekul 1 dari 2</span>
+                        </div>
+                        <div id="eksFormula" class="eks-formula"></div>
+                        <div id="mol3d"></div>
+                        <div class="atom-legend">
+                            <span><span class="atom-dot" style="background:#555;"></span>Karbon (C)</span>
+                            <span><span class="atom-dot" style="background:#fff;"></span>Hidrogen (H)</span>
+                        </div>
+                        <div class="explore-tools">
+                            <button class="btn btn-secondary" onclick="resetMolView()"><i class="fa-solid fa-arrows-rotate"></i> Reset</button>
+                            <button class="btn btn-secondary" onclick="toggleSpinMol()"><i class="fa-solid fa-rotate"></i> Putar</button>
+                            <button class="btn btn-secondary" id="pauseMolBtn" onclick="togglePauseMol()"><i class="fa-solid fa-pause"></i> Pause</button>
+                            <button class="btn btn-secondary" onclick="zoomInMol()"><i class="fa-solid fa-magnifying-glass-plus"></i> Zoom In</button>
+                            <button class="btn btn-secondary" onclick="zoomOutMol()"><i class="fa-solid fa-magnifying-glass-minus"></i> Zoom Out</button>
+                            <button class="btn btn-secondary" onclick="toggleAtomLabels()"><i class="fa-solid fa-tag"></i> Label Atom</button>
+                        </div>
+                        <div id="atomInfo" class="atom-info">💡 <b>Coba klik atom!</b> Kamu akan melihat apakah atom tersebut C atau H.</div>
+                        <div class="viewer-hint">Gunakan mouse/jari: geser untuk memutar • cubit/scroll untuk zoom.</div>
+                    </div>
+
+                    <div class="mission-card">
+                        <h3 style="margin-top:0;color:var(--primary-dark);"><i class="fa-solid fa-pen-to-square"></i> Isi langkah demi langkah</h3>
+                        <p style="font-size:.88rem;color:#475569;margin-bottom:.8rem;">Jawab sesuai urutan, lalu tekan <b>Cek Jawaban</b> di bagian bawah.</p>
+                        <div id="eksSteps"></div>
+                        <button class="btn btn-primary" id="eksCheckBtn" onclick="cekEksplorasi()" style="margin-top:.4rem;"><i class="fa-solid fa-check"></i> Cek Jawaban</button>
+                        <div id="eksResultMsg" class="eks-result" role="status"></div>
+                    </div>
+                </div>
+
+                <div id="eksDialog"></div>
+            </div>
+
+            <!-- PAGE: KESIMPULAN -->
+            <div id="latihan" class="page-content">
+                <h2><i class="fa-solid fa-lightbulb"></i> Kesimpulan Pembelajaran</h2>
+                <div class="card essay-card">
+                    <p>Setelah mempelajari materi tata nama alkena dan menyelesaikan eksplorasi molekul, tuliskan kesimpulanmu pada bagian berikut.</p>
+                    <div class="summary-point"><label for="qSummary1"><b>1. Apa yang kamu ketahui tentang pengertian alkena?</b></label><textarea class="essay-textarea summary-input" id="qSummary1" placeholder="Tuliskan kesimpulanmu..." required></textarea></div>
+                    <div class="summary-point"><label for="qSummary2"><b>2. Bagaimana cara menentukan rantai induk alkena?</b></label><textarea class="essay-textarea summary-input" id="qSummary2" placeholder="Tuliskan kesimpulanmu..." required></textarea></div>
+                    <div class="summary-point"><label for="qSummary3"><b>3. Bagaimana cara melakukan penomoran alkena?</b></label><textarea class="essay-textarea summary-input" id="qSummary3" placeholder="Tuliskan kesimpulanmu..." required></textarea></div>
+                    <div class="summary-point"><label for="qSummary4"><b>4. Apa yang kamu ketahui tentang cabang atau substituen?</b></label><textarea class="essay-textarea summary-input" id="qSummary4" placeholder="Tuliskan kesimpulanmu..." required></textarea></div>
+                    <div id="summaryRequirement" class="quiz-hint">Isi seluruh bagian kesimpulan sebelum menyelesaikan pembelajaran.</div>
+                    <button class="btn btn-primary" id="finishSummaryBtn" type="button" onclick="finishSummary()" style="margin-top:.8rem;"><i class="fa-solid fa-check"></i> Selesaikan Pembelajaran</button>
+                    <div id="summaryDone" class="eks-result good" role="status"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODAL PETUNJUK -->
+    <div id="petunjukModal" class="modal-overlay" onclick="closeModal('petunjukModal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2><i class="fa-solid fa-circle-question"></i> Petunjuk Aplikasi</h2>
+            <p>1. Gunakan sidebar sebelah kiri untuk berpindah bagian sesuai alur belajar.</p>
+            <p>2. Pada bagian Eksplorasi Molekul, Anda bisa melihat visualisasi struktur alkena dan penomorannya.</p>
+            <p>3. Pada bagian Latihan, latihlah kemampuan Anda menyusun nama IUPAC dan periksa feedback otomatis.</p>
+            <p>4. Tuliskan kesimpulan pada bagian akhir setelah menyelesaikan eksplorasi molekul.</p>
+            <div style="text-align: right; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="closeModal('petunjukModal')">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PEMBAHASAN / PANDUAN IUPAC -->
+    <div id="pembahasanModal" class="modal-overlay" onclick="closeModal('pembahasanModal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2><i class="fa-solid fa-book-open"></i> Ringkasan Aturan IUPAC Alkena</h2>
+            <ol style="padding-left: 1.2rem; line-height: 1.8;">
+                <li><b>Rantai Induk:</b> Rantai karbon terpanjang yang <i>mengandung ikatan C=C</i>. Akhiran diganti menjadi <b>-ena</b>.</li>
+                <li><b>Penomoran:</b> Diukur dari ujung yang paling dekat dengan ikatan rangkap C=C.</li>
+                <li><b>Posisi Rangkap:</b> Ditulis tepat sebelum nama rantai induk (misal: <i>2-pentena</i>).</li>
+                <li><b>Gugus Cabang:</b> Ditulis di depan dengan urutan alfabetis jika berbeda jenis (misal: <i>3-etil-2-metil...</i>).</li>
+            </ol>
+            <div style="text-align: right; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="closeModal('pembahasanModal')">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== Pembuka interaktif =====
+        let studentName = '';
+        // ===== Kirim SEMUA jawaban siswa ke Google Sheets (lewat Google Apps Script) =====
+        // GANTI tulisan di bawah dengan URL Web App hasil Deploy Apps Script (berakhiran /exec)
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyrmX9_fyrhJMMTPGGC3pdrPNGmDkzNPz6bgjCGtkpP6hNTSjSUM88JSABnRfKWenMZ/exec';
+        // items = [{pertanyaan, jawaban, status}]  -> setiap item menjadi 1 baris di spreadsheet
+        function kirimKeSheet(bagian, items) {
+            try {
+                if (!SHEET_URL || SHEET_URL.indexOf('PASTE_') === 0) { console.warn('SHEET_URL belum diisi'); return; }
+                const payload = {
+                    nama: studentName || '(belum isi)',
+                    kelas: studentClass || '-',
+                    bagian: bagian,
+                    items: items
+                };
+                fetch(SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    keepalive: true,
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                }).catch(function (e) { console.warn('Gagal kirim ke sheet', e); });
+            } catch (e) { console.warn('Gagal kirim ke sheet', e); }
+        }
+
+        let welcomeActive = true;
+        let bubblePops = 0;
+        let lastInteract = Date.now();
+        let moodCycle = 0;
+        const NAMES = { flask: 'Bunga', tube: 'Diva' };
+        const MAX_LV = { flask: 40, tube: 44 };
+        const POKE = {
+            flask: ['Hai! Aku Bunga, siap menemanimu belajar! 🧪', 'Hehe, geli tau! 😆', 'Tahukah kamu? Alkena punya ikatan rangkap dua! ✨', 'Ayo klik "Mulai", petualangan kimia menunggu! 🚀'],
+            tube: ['Aku Diva! Yuk kenalan sama alkena 💚', 'Wah, kamu ramah banget! 🥰', 'Coba geser aku, seru lho! 👆', 'Pecahkan gelembung biar isiku penuh! 🫧']
+        };
+        const pokeIdx = { flask: 0, tube: 0 };
+        const DRAG_LINES = ['Wiii! Aku terbang! 🛫', 'Pusing pusing pusing~ 😵‍💫', 'Pelan-pelan dong! 😆', 'Tolong, aku dibawa kabur! 🏃'];
+        const DROP_LINES = ['Hup! Mendarat dengan selamat! 🙌', 'Seru banget! Lagi dong! 🎢', 'Wuhuu! 🎉'];
+        const DIALOG = [
+            ['flask', 'Hai Diva! Siap belajar alkena hari ini? 🧪'],
+            ['tube', 'Siap dong, Bunga! Ayo kita mulai! 💚'],
+            ['flask', 'Katanya alkena punya ikatan rangkap dua lho!'],
+            ['tube', 'Wah seru! Nanti kita cari rantai induknya bareng 🔍'],
+            ['flask', 'Kamu boleh geser-geser kami, kok! 👆'],
+            ['tube', 'Atau pecahkan gelembung biar isi kami penuh 🫧']
+        ];
+        let dlgIdx = 0;
+        const pick = a => a[Math.floor(Math.random() * a.length)];
+        const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+        const whoOf = svg => svg.classList.contains('flask') ? 'flask' : 'tube';
+        const svgOf = who => document.querySelector('#startPanel .lab-character.' + (who === 'flask' ? 'flask' : 'test-tube'));
+
+        function sayMascot(msg, who) {
+            const b = document.getElementById('mascotBubble');
+            if (!b) return;
+            b.textContent = (who ? NAMES[who] + ': ' : '') + msg;
+            b.style.left = who === 'flask' ? '27%' : who === 'tube' ? '73%' : '50%';
+            b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+        }
+
+        function setMood(svg, mood, ms) {
+            ['wow', 'wink', 'happy'].forEach(m => svg.classList.remove(m));
+            clearTimeout(svg.__moodT);
+            if (mood) {
+                svg.classList.add(mood);
+                if (ms) svg.__moodT = setTimeout(() => svg.classList.remove(mood), ms);
+            }
+        }
+
+        function talk(svg, ms) {
+            svg.classList.add('talking');
+            clearTimeout(svg.__talkT);
+            svg.__talkT = setTimeout(() => svg.classList.remove('talking'), ms);
+        }
+
+        function cheerMascots(on, msg) {
+            document.querySelectorAll('#startPanel .lab-character').forEach(s => s.classList.toggle('cheer', on));
+            if (on && msg) sayMascot(msg);
+        }
+
+        function spawnSpark(x, y, ch, cls) {
+            const p = document.getElementById('startPanel');
+            if (!p) return;
+            const s = document.createElement('span');
+            s.className = 'trail-spark' + (cls ? ' ' + cls : '');
+            s.textContent = ch;
+            s.style.left = x + 'px'; s.style.top = y + 'px';
+            s.style.setProperty('--dx', (Math.random() * 40 - 20) + 'px');
+            p.appendChild(s);
+            setTimeout(() => s.remove(), 800);
+        }
+
+        function burstSparks(el, chars) {
+            const r = el.getBoundingClientRect();
+            chars = chars || ['✨', '💚', '⭐', '🧪'];
+            for (let i = 0; i < 7; i++) {
+                spawnSpark(r.left + r.width / 2 + (Math.random() * 90 - 45), r.top + r.height / 3 + (Math.random() * 40 - 20), chars[i % chars.length], 'big');
+            }
+        }
+
+        function pokeMascot(svg) {
+            const who = whoOf(svg);
+            lastInteract = Date.now();
+            setMood(svg, ['wow', 'wink', 'happy'][moodCycle++ % 3], 1400);
+            svg.classList.remove('jump'); void svg.getBoundingClientRect(); svg.classList.add('jump');
+            setTimeout(() => svg.classList.remove('jump'), 750);
+            const arr = POKE[who];
+            sayMascot(arr[pokeIdx[who]++ % arr.length], who);
+            talk(svg, 1400);
+            burstSparks(svg, ['✨', '💚', '🫧', '⭐']);
+        }
+
+        function setFill() {
+            const lvl = Math.min(1, bubblePops / 10);
+            document.querySelectorAll('#startPanel .lab-character').forEach(s => s.style.setProperty('--lv', (lvl * MAX_LV[whoOf(s)]).toFixed(1)));
+            const f = document.getElementById('fillPct');
+            if (f) f.textContent = Math.round(lvl * 100);
+        }
+
+        function initMascotDrag(wrap) {
+            const svg = wrap.querySelector('.lab-character');
+            const who = whoOf(svg);
+            let down = false, moved = 0, sx = 0, sy = 0, lx = 0, vx = 0, highfived = false;
+            wrap.addEventListener('pointerdown', function (e) {
+                down = true; moved = 0; sx = lx = e.clientX; sy = e.clientY; highfived = false;
+                lastInteract = Date.now();
+                wrap.classList.remove('settle');
+                try { wrap.setPointerCapture(e.pointerId); } catch (_) {}
+            });
+            wrap.addEventListener('pointermove', function (e) {
+                if (!down) return;
+                const dx = e.clientX - sx, dy = e.clientY - sy;
+                moved = Math.max(moved, Math.hypot(dx, dy));
+                if (moved < 6) return;
+                if (!wrap.classList.contains('dragging')) {
+                    wrap.classList.add('dragging');
+                    setMood(svg, 'wow');
+                    sayMascot(pick(DRAG_LINES), who);
+                }
+                vx = e.clientX - lx; lx = e.clientX;
+                wrap.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + clamp(vx * 1.2, -22, 22) + 'deg)';
+                svg.style.setProperty('--sk', clamp(-vx * 1.5, -18, 18) + 'deg');
+                // tos kalau mendekati maskot lain
+                const other = svgOf(who === 'flask' ? 'tube' : 'flask');
+                if (!highfived && other) {
+                    const a = svg.getBoundingClientRect(), b = other.getBoundingClientRect();
+                    if (Math.hypot((a.left + a.width / 2) - (b.left + b.width / 2), (a.top + a.height / 2) - (b.top + b.height / 2)) < 130) {
+                        highfived = true;
+                        [svg, other].forEach(s => { setMood(s, 'happy', 1600); s.classList.add('cheer'); setTimeout(() => s.classList.remove('cheer'), 900); });
+                        sayMascot('High five! 🙌', who);
+                        burstSparks(other, ['🙌', '✨', '💚', '⭐']);
+                    }
+                }
+            });
+            const end = function (e) {
+                if (!down) return;
+                down = false;
+                try { wrap.releasePointerCapture(e.pointerId); } catch (_) {}
+                if (wrap.classList.contains('dragging')) {
+                    wrap.classList.remove('dragging');
+                    wrap.classList.add('settle');
+                    wrap.style.transform = '';
+                    svg.style.setProperty('--sk', '0deg');
+                    setMood(svg, 'happy', 1600);
+                    sayMascot(pick(DROP_LINES), who);
+                    talk(svg, 1200);
+                } else {
+                    pokeMascot(svg);
+                }
+            };
+            wrap.addEventListener('pointerup', end);
+            wrap.addEventListener('pointercancel', end);
+            wrap.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pokeMascot(svg); }
+            });
+            wrap.addEventListener('dblclick', function () {
+                wrap.classList.add('spin');
+                sayMascot('Wuuush! Berputar! 🌀', who);
+                setTimeout(() => wrap.classList.remove('spin'), 850);
+            });
+        }
+
+        function spawnBubble(layer, initial) {
+            if (!layer || !welcomeActive) return;
+            const b = document.createElement('div');
+            b.className = 'w-bubble';
+            const size = 18 + Math.random() * 44;
+            b.style.width = b.style.height = size + 'px';
+            b.style.left = (Math.random() * 94) + '%';
+            const dur = 9 + Math.random() * 9;
+            b.style.setProperty('--d', dur + 's');
+            b.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
+            b.style.animationDelay = (initial ? -Math.random() * dur : 0) + 's';
+            b.addEventListener('pointerdown', function (ev) { ev.stopPropagation(); popBubble(b, layer); });
+            layer.appendChild(b);
+        }
+
+        function popBubble(b, layer) {
+            if (b.dataset.popped) return;
+            b.dataset.popped = '1';
+            lastInteract = Date.now();
+            const r = b.getBoundingClientRect(), pr = layer.getBoundingClientRect();
+            b.style.animation = 'none';
+            b.style.left = (r.left - pr.left) + 'px'; b.style.top = (r.top - pr.top) + 'px';
+            b.style.bottom = 'auto'; b.style.transform = 'none';
+            b.classList.add('popped');
+            spawnSpark(r.left + r.width / 2, r.top + r.height / 2, '✨', 'big');
+            bubblePops++;
+            const c = document.getElementById('bubbleCount');
+            if (c) c.textContent = bubblePops;
+            setFill();
+            document.querySelectorAll('#startPanel .lab-character').forEach(s => {
+                setMood(s, 'happy', 1200);
+                s.classList.add('cheer'); setTimeout(() => s.classList.remove('cheer'), 700);
+            });
+            if (bubblePops === 3) sayMascot('Isi kami mulai naik! 🌊');
+            if (bubblePops === 5) sayMascot('Wah, jago banget memecahkan gelembung! 🫧');
+            if (bubblePops === 10) {
+                sayMascot('Penuh! Kami kenyang reaksi! 🎉');
+                document.querySelectorAll('#startPanel .lab-character').forEach(s => burstSparks(s, ['🎉', '✨', '💚', '⭐']));
+            }
+            if (bubblePops === 20) sayMascot('Kamu tidak bisa dihentikan! 🔥');
+            setTimeout(() => { b.remove(); spawnBubble(layer, false); }, 400);
+        }
+
+        function initWelcome() {
+            const panel = document.getElementById('startPanel');
+            if (!panel) return;
+            let lastTrail = 0;
+            panel.addEventListener('pointermove', function (e) {
+                if (!welcomeActive) return;
+                panel.querySelectorAll('.lab-character').forEach(function (svg) {
+                    const r = svg.getBoundingClientRect();
+                    const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+                    const d = Math.hypot(dx, dy) || 1;
+                    const k = Math.min(1, d / 160) * 4;
+                    svg.classList.add('tracking');
+                    svg.style.setProperty('--px', (dx / d * k).toFixed(2) + 'px');
+                    svg.style.setProperty('--py', (dy / d * k * 0.8).toFixed(2) + 'px');
+                });
+                const now = Date.now();
+                if (now - lastTrail > 70) { lastTrail = now; spawnSpark(e.clientX, e.clientY, '✦'); }
+            });
+            const layer = document.getElementById('welcomeBubbles');
+            for (let i = 0; i < 12; i++) spawnBubble(layer, true);
+            panel.querySelectorAll('.mascot-wrap').forEach(initMascotDrag);
+
+            const inp = document.getElementById('studentName');
+            if (inp) {
+                inp.addEventListener('input', function () {
+                    lastInteract = Date.now();
+                    const n = inp.value.trim();
+                    if (n) {
+                        sayMascot('Halo, ' + n + '! Senang bertemu denganmu! 👋');
+                        cheerMascots(true);
+                        panel.querySelectorAll('.lab-character').forEach(s => { setMood(s, 'happy', 1300); talk(s, 1300); });
+                        clearTimeout(window.__cheerT);
+                        window.__cheerT = setTimeout(() => cheerMascots(false), 1200);
+                    } else sayMascot('Klik, geser, atau lempar kami! 👋');
+                });
+                inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') startLearning(); });
+            }
+
+            // Maskot ngobrol sendiri kalau lama tidak disentuh
+            setInterval(function () {
+                if (!welcomeActive || Date.now() - lastInteract < 5000) return;
+                if (document.activeElement === inp) return;
+                const line = DIALOG[dlgIdx++ % DIALOG.length];
+                const s = svgOf(line[0]);
+                sayMascot(line[1], line[0]);
+                if (s) talk(s, 1800);
+            }, 6000);
+        }
+
+        // Escaping teks sebelum dimasukkan ke greeting agar nama/kelas aman ditampilkan.
+        function escHtml(value) {
+            return String(value).replace(/[&<>"']/g, function (ch) {
+                return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[ch];
+            });
+        }
+
+        let studentClass = '';
+        function startLearning() {
+            const inp = document.getElementById('studentName');
+            const cls = document.getElementById('studentClass');
+            const enteredName = (inp ? inp.value : '').trim().slice(0, 20);
+            const enteredClass = (cls ? cls.value : '').trim().slice(0, 30);
+            if (!enteredName) {
+                if (inp) { inp.focus(); inp.setCustomValidity('Nama wajib diisi.'); inp.reportValidity(); inp.addEventListener('input', () => inp.setCustomValidity(''), {once:true}); }
+                return;
+            }
+            if (!enteredClass) {
+                if (cls) { cls.focus(); cls.setCustomValidity('Kelas wajib diisi.'); cls.reportValidity(); cls.addEventListener('input', () => cls.setCustomValidity(''), {once:true}); }
+                return;
+            }
+            studentName = enteredName;
+            studentClass = enteredClass;
+            kirimKeSheet('Data Siswa', [{ pertanyaan: 'Mulai belajar', jawaban: enteredName + ' / ' + enteredClass, status: 'Mulai' }]);
+            const g = document.getElementById('coverGreeting');
+            if (g) { g.style.display = 'block'; g.innerHTML = 'Halo, <b>' + escHtml(studentName) + '</b> dari kelas <b>' + escHtml(studentClass) + '</b>! Selamat belajar 👋'; }
+            const p = document.getElementById('startPanel');
+            if (!p) return;
+            welcomeActive = false;
+            cheerMascots(true);
+            p.classList.add('leaving');
+            setTimeout(function () { p.style.display = 'none'; p.classList.remove('leaving'); navigateTo('cover'); }, 450);
+        }
+        document.addEventListener('DOMContentLoaded', initWelcome);
+        // Data Navigation
+        const pageHistory = [];
+        const MEDIA_PAGE_ORDER = ['cover','petunjuk','tujuan','petakonsep','pengantar1','pengantar2','aturan','latihan'];
+        let maxUnlockedPage = 0;
+
+        function updateNavLocks() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                const match = item.getAttribute('onclick') && item.getAttribute('onclick').match(/navigateTo\('([^']+)'/);
+                if (!match) return;
+                const idx = MEDIA_PAGE_ORDER.indexOf(match[1]);
+                const locked = idx > maxUnlockedPage;
+                item.classList.toggle('nav-locked', locked);
+                item.setAttribute('aria-disabled', locked ? 'true' : 'false');
+
+                let lock = item.querySelector('.nav-lock');
+                if (locked) {
+                    if (!lock) {
+                        lock = document.createElement('i');
+                        lock.className = 'fa-solid fa-lock nav-lock';
+                        item.appendChild(lock);
+                    }
+                } else if (lock) {
+                    lock.remove();
+                }
+            });
+        }
+
+        function navigateTo(pageId, fromBack = false) {
+            const targetIndex = MEDIA_PAGE_ORDER.indexOf(pageId);
+            let lockedPreview = false;
+            if (targetIndex !== -1 && targetIndex > maxUnlockedPage) {
+                // Slide berikutnya membuka akses secara berurutan.
+                // Slide yang lebih jauh tetap boleh dibuka untuk melihat isi,
+                // tetapi hanya sebagai pratinjau terkunci.
+                if (targetIndex === maxUnlockedPage + 1) {
+                    maxUnlockedPage = targetIndex;
+                } else {
+                    lockedPreview = true;
+                }
+            }
+
+            const currentPage = document.querySelector('.page-content.active');
+            if (!fromBack && currentPage && currentPage.id !== pageId) {
+                pageHistory.push(currentPage.id);
+            }
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                targetPage.classList.toggle('locked-preview', lockedPreview);
+                let notice = targetPage.querySelector('.locked-preview-notice');
+                if (lockedPreview && !notice) {
+                    notice = document.createElement('div');
+                    notice.className = 'locked-preview-notice';
+                    notice.innerHTML = '<i class="fa-solid fa-lock"></i> Slide ini masih terkunci. Kamu bisa melihat materinya, tetapi aktivitas belum bisa dikerjakan. Selesaikan slide sebelumnya untuk membukanya.';
+                    const backRow = targetPage.querySelector('.page-back-row');
+                    if (backRow) backRow.after(notice);
+                    else targetPage.prepend(notice);
+                } else if (!lockedPreview && notice) {
+                    notice.remove();
+                }
+            }
+
+            // Highlight nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(pageId)) {
+                    item.classList.add('active');
+                }
+            });
+
+            updateNavLocks();
+            if (pageId === 'aturan' && typeof eksOnShow === 'function') eksOnShow();
+            // Perbarui status tombol kembali pada semua halaman
+            updateBackButtons();
+            // Scroll to top of content
+            document.querySelector('.content-area').scrollTop = 0;
+        }
+
+        function goBackPage() {
+            const currentPage = document.querySelector('.page-content.active');
+            if (!currentPage || currentPage.id === MEDIA_PAGE_ORDER[0]) return;
+
+            // Utamakan riwayat navigasi; jika belum ada riwayat, kembali ke slide sebelumnya.
+            let previousPage = pageHistory.pop();
+            if (!previousPage) {
+                const currentIndex = MEDIA_PAGE_ORDER.indexOf(currentPage.id);
+                if (currentIndex > 0) previousPage = MEDIA_PAGE_ORDER[currentIndex - 1];
+            }
+            if (previousPage) navigateTo(previousPage, true);
+            updateBackButtons();
+        }
+
+        function updateBackButtons() {
+            const currentPage = document.querySelector('.page-content.active');
+            const isFirstSlide = !currentPage || currentPage.id === MEDIA_PAGE_ORDER[0];
+            document.querySelectorAll('.page-back-btn').forEach(btn => {
+                const ownerPage = btn.closest('.page-content');
+                // Tombol Back tampil pada setiap slide yang sedang aktif.
+                // Pada slide pertama tombol tetap terlihat, tetapi dinonaktifkan.
+                btn.style.display = (!ownerPage || !ownerPage.classList.contains('active')) ? 'none' : 'inline-flex';
+                btn.disabled = isFirstSlide;
+                btn.setAttribute('aria-disabled', isFirstSlide ? 'true' : 'false');
+            });
+        }
+
+        function addBackButtons() {
+            document.querySelectorAll('.page-content').forEach(page => {
+                // Tambahkan tombol Back pada seluruh slide, termasuk cover.
+                if (page.querySelector('.page-back-row')) return;
+                const row = document.createElement('div');
+                row.className = 'page-back-row';
+                row.innerHTML = '<button type="button" class="btn btn-outline page-back-btn" onclick="goBackPage()" aria-label="Kembali ke slide sebelumnya"><i class="fa-solid fa-arrow-left"></i> Kembali</button>';
+                // Letakkan tombol di bagian paling atas agar langsung terlihat pada setiap slide.
+                page.prepend(row);
+                if (!page.querySelector('.page-eraser-mascot')) {
+                    const mascot = document.createElement('div');
+                    mascot.className = 'page-eraser-mascot';
+                    mascot.setAttribute('aria-hidden', 'true');
+                    mascot.innerHTML = (typeof miniMascotSVG === 'function') ? miniMascotSVG('') : '';
+                    page.appendChild(mascot);
+                }
+            });
+            updateBackButtons();
+        }
+        document.addEventListener('DOMContentLoaded', addBackButtons);
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        // ===== Latihan Eksplorasi Molekul bertahap =====
+        const moleculeSDF = {
+            butena: `struktur-1
+  3D
+
+ 12 11  0  0  0  0  0  0  0  0999 V2000
+   -1.5304    1.2287    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.6700    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6700    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.5304   -1.2287    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.1307   -0.9879    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1307    0.9879    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.8974    2.1161    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1599    1.2321   -0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1599    1.2321    0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8974   -2.1161    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1599   -1.2321   -0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1599   -1.2321    0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0
+  2  3  2  0
+  3  4  1  0
+  2  5  1  0
+  3  6  1  0
+  1  7  1  0
+  1  8  1  0
+  1  9  1  0
+  4 10  1  0
+  4 11  1  0
+  4 12  1  0
+M  END
+`,
+            metilpropena: `struktur-2
+  3D
+
+ 12 11  0  0  0  0  0  0  0  0999 V2000
+    1.3400    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7500    1.2990    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7500   -1.2990    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8800    0.9350    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8800   -0.9350    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0421    2.1279    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.3768    1.3572   -0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.3768    1.3572    0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8217   -1.1003    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4870   -1.8710   -0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.4870   -1.8710    0.8898 H   0  0  0  0  0  0  0  0  0  0  0  0
+  2  1  2  0
+  2  3  1  0
+  2  4  1  0
+  1  5  1  0
+  1  6  1  0
+  3  7  1  0
+  3  8  1  0
+  3  9  1  0
+  4 10  1  0
+  4 11  1  0
+  4 12  1  0
+M  END
+`
+        };
+
+        let molViewer = null, molModel = null, molSpinning = false, molLabels = false, molPaused = false;
+
+        const sel = (list) => [['', 'Pilih jawaban...']].concat(list);
+        const nums = (a, b) => { const r = []; for (let i = a; i <= b; i++) r.push([String(i), String(i)]); return r; };
+
+        const EKS_MOLS = [
+            {
+                sdf: 'butena',
+                badge: 'Molekul 1 dari 2',
+                formula: 'CH<sub>3</sub> — CH = CH — CH<sub>3</sub>',
+                steps: [
+                    { id: 'arah', label: '1. Penomoran C1 dimulai dari arah mana?', hint: 'Mulai dari ujung yang paling dekat dengan ikatan rangkap C=C. Coba hitung dari kedua ujung.',
+                      type: 'select', opts: sel([['kiri', 'Dari ujung kiri'], ['kanan', 'Dari ujung kanan'], ['sama', 'Kiri atau kanan sama saja']]), ans: 'sama',
+                      right: 'Tepat! Letak C=C simetris, jadi dari kiri maupun kanan hasilnya sama.',
+                      wrong: 'Coba hitung dari kiri, lalu dari kanan. Apakah nomor C=C-nya berbeda?' },
+                    { id: 'jumlahC', label: '2. Berapa jumlah atom C pada rantai induk?', hint: 'Rantai induk = rantai karbon terpanjang yang melewati ikatan rangkap C=C.',
+                      type: 'select', opts: sel(nums(2, 6)), ans: '4',
+                      right: 'Benar, rantai induknya terdiri dari 4 atom C.',
+                      wrong: 'Hitung semua atom C yang tersambung dalam satu rantai terpanjang.' },
+                    { id: 'rangkap', label: '3. Ikatan rangkap C=C berada di antara C nomor berapa dan seterusnya (tulis nomor yang lebih kecil)?', hint: 'Posisi C=C ditulis dengan nomor C yang lebih kecil.',
+                      type: 'select', opts: sel(nums(1, 4)), ans: '2',
+                      right: 'Benar, C=C dimulai dari C nomor 2.',
+                      wrong: 'Hitung nomor C dari ujung. C=C dimulai dari atom C ke berapa?' },
+                    { id: 'iupac', label: '4. Tuliskan nama IUPAC senyawa ini.', hint: 'Format: [posisi C=C]-[nama rantai induk berakhiran -ena].',
+                      type: 'text', ph: 'Tulis nama IUPAC...', accept: ['2-butena'],
+                      right: 'Nama IUPAC yang tepat.',
+                      wrong: 'Gabungkan posisi C=C dan nama rantai induk. Rantai 4 karbon = but-, akhiran -ena, dipisah tanda hubung.' }
+                ]
+            },
+            {
+                sdf: 'metilpropena',
+                badge: 'Molekul 2 dari 2',
+                formula: 'CH<sub>2</sub> = <span class="eks-c-branch">C<span class="eks-branch-up">CH<sub>3</sub><br>|</span></span> — CH<sub>3</sub>',
+                steps: [
+                    { id: 'arah', label: '1. Penomoran C1 dimulai dari arah mana?', hint: 'Mulai dari ujung yang membuat C=C mendapat nomor sekecil mungkin (cabang bukan patokan).',
+                      type: 'select', opts: sel([['kiri', 'Dari ujung kiri'], ['kanan', 'Dari ujung kanan'], ['sama', 'Kiri atau kanan sama saja']]), ans: 'kiri',
+                      right: 'Tepat! Dari kiri, C=C mendapat nomor 1.',
+                      wrong: 'Bandingkan nomor C=C jika dihitung dari kiri dan dari kanan. Pilih yang nomornya lebih kecil.' },
+                    { id: 'jumlahC', label: '2. Berapa jumlah atom C pada rantai induk?', hint: 'Rantai induk terpanjang yang melewati C=C. Atom C pada cabang tidak ikut dihitung.',
+                      type: 'select', opts: sel(nums(2, 6)), ans: '3',
+                      right: 'Benar, rantai induknya 3 atom C.',
+                      wrong: 'Ingat, atom C yang keluar dari rantai (cabang) tidak ikut dihitung sebagai rantai induk.' },
+                    { id: 'rangkap', label: '3. Ikatan rangkap C=C dimulai dari C nomor berapa?', hint: 'Gunakan penomoran dari langkah 1.',
+                      type: 'select', opts: sel(nums(1, 3)), ans: '1',
+                      right: 'Benar, C=C dimulai dari C nomor 1.',
+                      wrong: 'Gunakan arah penomoran dari langkah 1, lalu lihat C=C ada di C nomor berapa.' },
+                    { id: 'namaCabang', label: '4. Apa nama cabang yang menempel pada rantai induk?', hint: 'Cabang dengan 1 atom C = metil, 2 atom C = etil, dan seterusnya.',
+                      type: 'select', opts: sel([['metil', 'Metil'], ['etil', 'Etil'], ['propil', 'Propil'], ['tidak', 'Tidak ada cabang']]), ans: 'metil',
+                      right: 'Benar, cabangnya metil (—CH₃).',
+                      wrong: 'Hitung jumlah atom C pada cabang yang keluar dari rantai induk.' },
+                    { id: 'posCabang', label: '5. Cabang menempel pada C nomor berapa?', hint: 'Gunakan penomoran rantai induk yang sama.',
+                      type: 'select', opts: sel(nums(1, 3)), ans: '2',
+                      right: 'Benar, cabang berada di C nomor 2.',
+                      wrong: 'Lihat atom C rantai induk yang memiliki cabang, lalu cek nomornya.' },
+                    { id: 'iupac', label: '6. Tuliskan nama IUPAC senyawa ini.', hint: 'Format: [posisi cabang]-[nama cabang][nama rantai induk]. Contoh pola: 3-etilheksena.',
+                      type: 'text', ph: 'Tulis nama IUPAC...', accept: ['2-metilpropena', '2-metil-1-propena'],
+                      right: 'Nama IUPAC yang tepat.',
+                      wrong: 'Susun: nomor cabang, nama cabang, lalu nama rantai induk (3 karbon berakhiran -ena).' }
+                ]
+            }
+        ];
+
+        let eksStage = 0;
+        let eksMascotCount = 0;
+
+        function eksMascot(who) {
+            const src = document.querySelector('#guide-panel-cover .mascot-wrap[data-who="' + who + '"]');
+            if (!src) return '';
+            eksMascotCount++;
+            return src.outerHTML.replace(/-cover\b/g, '-eks' + eksMascotCount);
+        }
+
+        function eksNormName(s) {
+            return s.toLowerCase().replace(/[\u2010-\u2015\u2212]/g, '-').replace(/\s+/g, '');
+        }
+
+        function renderEksplorasi() {
+            eksStage = 0;
+            buildEksStage(0);
+        }
+
+        function buildEksStage(i) {
+            eksStage = i;
+            const m = EKS_MOLS[i];
+            document.getElementById('eksBadge').textContent = m.badge;
+            document.getElementById('eksFormula').innerHTML = m.formula;
+            document.getElementById('eksChip0').className = 'eks-chip ' + (i === 0 ? 'active' : 'done');
+            document.getElementById('eksChip1').className = 'eks-chip ' + (i === 1 ? 'active' : '');
+
+            document.getElementById('eksSteps').innerHTML = m.steps.map(s => {
+                const field = s.type === 'select'
+                    ? '<select id="eks_' + s.id + '">' + s.opts.map(o => '<option value="' + o[0] + '">' + o[1] + '</option>').join('') + '</select>'
+                    : '<input type="text" id="eks_' + s.id + '" placeholder="' + s.ph + '" autocomplete="off" autocapitalize="none" spellcheck="false">';
+                return '<div class="eks-step" id="eksrow_' + s.id + '">' +
+                    '<label for="eks_' + s.id + '">' + s.label + '</label>' +
+                    '<p class="eks-hint">💡 ' + s.hint + '</p>' + field +
+                    '<div class="eks-step-fb" id="eksfb_' + s.id + '"></div></div>';
+            }).join('');
+
+            const btn = document.getElementById('eksCheckBtn');
+            btn.style.display = '';
+            const msg = document.getElementById('eksResultMsg');
+            msg.className = 'eks-result'; msg.innerHTML = '';
+            document.getElementById('eksDialog').innerHTML = '';
+            document.getElementById('atomInfo').innerHTML = '💡 <b>Coba klik atom!</b> Kamu akan melihat apakah atom tersebut C atau H.';
+
+            if (document.getElementById('aturan').classList.contains('active')) init3DMolecule(m.sdf);
+        }
+
+        // Dipanggil setiap halaman Aturan dibuka agar viewer 3D punya ukuran yang benar.
+        function eksOnShow() {
+            init3DMolecule(EKS_MOLS[eksStage].sdf);
+        }
+
+        function cekEksplorasi() {
+            const m = EKS_MOLS[eksStage];
+            let allOk = true, anyBlank = false;
+            m.steps.forEach(s => {
+                const el = document.getElementById('eks_' + s.id);
+                const row = document.getElementById('eksrow_' + s.id);
+                const fb = document.getElementById('eksfb_' + s.id);
+                const val = (el.value || '').trim();
+                let ok = false;
+                if (!val) { anyBlank = true; }
+                else if (s.type === 'text') ok = s.accept.indexOf(eksNormName(val)) !== -1;
+                else ok = val === s.ans;
+                row.classList.toggle('ok', ok);
+                row.classList.toggle('bad', !ok);
+                let correctAnswer = '';
+                if (s.type === 'select') {
+                    const option = s.opts.find(o => o[0] === s.ans);
+                    correctAnswer = option ? option[1] : s.ans;
+                } else {
+                    correctAnswer = s.accept[0];
+                }
+                fb.innerHTML = ok
+                    ? '✅ Benar! ' + s.right
+                    : (val
+                        ? '❌ Salah. ' + s.wrong + ' <b>Jawaban yang benar: ' + correctAnswer + '.</b>'
+                        : '✏️ Belum diisi. Isi bagian ini terlebih dahulu.');
+                if (!ok) allOk = false;
+            });
+
+            const eksItems = m.steps.map(s2 => {
+                const e2 = document.getElementById('eks_' + s2.id);
+                const v2 = e2 ? (e2.value || '').trim() : '';
+                let teks = v2;
+                if (s2.type === 'select') { const o2 = s2.opts.find(o => o[0] === v2); teks = o2 && v2 ? o2[1] : ''; }
+                let ok2 = false;
+                if (v2) ok2 = s2.type === 'text' ? s2.accept.indexOf(eksNormName(v2)) !== -1 : v2 === s2.ans;
+                return { pertanyaan: 'Molekul ' + (eksStage + 1) + ' - ' + s2.label, jawaban: teks, status: !v2 ? 'Kosong' : (ok2 ? 'Benar' : 'Salah') };
+            });
+            kirimKeSheet('Eksplorasi Molekul', eksItems);
+
+            const msg = document.getElementById('eksResultMsg');
+            if (!allOk) {
+                msg.className = 'eks-result show bad';
+                msg.innerHTML = anyBlank
+                    ? 'Masih ada bagian yang kosong. Lengkapi semua langkah, lalu cek lagi ya 😊'
+                    : 'Masih ada jawaban yang belum tepat. Baca petunjuk di bawah tiap pertanyaan, perbaiki, lalu tekan <b>Cek Jawaban</b> lagi 💪';
+                return;
+            }
+
+            // Semua benar: kunci isian, sembunyikan tombol cek, tampilkan dialog maskot.
+            m.steps.forEach(s => { document.getElementById('eks_' + s.id).disabled = true; });
+            document.getElementById('eksCheckBtn').style.display = 'none';
+            msg.className = 'eks-result show good';
+            msg.innerHTML = '🎉 Semua jawaban sudah benar!';
+
+            const nm = studentName ? escHtml(studentName) : 'Kamu';
+            const box = document.getElementById('eksDialog');
+            if (eksStage === 0) {
+                document.getElementById('eksChip0').className = 'eks-chip done';
+                box.innerHTML = '<div class="guide-panel mascot-guide eks-dialog-wrap"><div class="guide-mascot-scene" aria-hidden="true">' + eksMascot('flask') + '</div>' +
+                    '<div class="guide-mascot-dialog"><strong>Bunga:</strong>' +
+                    '<p>Hebat, ' + nm + '! Kamu sudah bisa menamai alkena rantai lurus. Contoh berikutnya adalah alkena <b>bercabang</b>, jadi kita juga perlu menentukan nama dan posisi cabangnya. Siap?</p>' +
+                    '<button class="btn btn-primary" onclick="eksLanjutBercabang()">Lanjut ke Contoh Bercabang <i class="fa-solid fa-arrow-right"></i></button></div></div>';
+            } else {
+                document.getElementById('eksChip1').className = 'eks-chip done';
+                box.innerHTML = '<div class="guide-panel mascot-guide eks-dialog-wrap"><div class="guide-mascot-scene" aria-hidden="true">' + eksMascot('tube') + '</div>' +
+                    '<div class="guide-mascot-dialog"><strong>Diva:</strong>' +
+                    '<p>Selamat, ' + nm + '! Semua latihan eksplorasi sudah kamu selesaikan dengan benar. Kamu sudah boleh melanjutkan ke slide berikutnya!</p>' +
+                    '<button class="btn btn-primary" onclick="eksLanjutSoal()">Lanjut ke Kesimpulan <i class="fa-solid fa-arrow-right"></i></button></div></div>';
+            }
+            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function eksLanjutBercabang() {
+            buildEksStage(1);
+            document.querySelector('.content-area').scrollTop = document.getElementById('eksProgress').offsetTop - 20;
+        }
+
+        function eksLanjutSoal() {
+            navigateTo('latihan');
+        }
+
+        function init3DMolecule(key) {
+            const el = document.getElementById('mol3d');
+            if (!window.$3Dmol) {
+                el.innerHTML = '<div style="padding:2rem;text-align:center">Visualisasi 3D membutuhkan koneksi internet. Hubungkan internet lalu buka ulang HTML ini.</div>';
+                return;
+            }
+            // Hentikan viewer sebelumnya agar animasi lama tidak tetap berjalan.
+            if (molViewer) {
+                try { molViewer.spin(false); molViewer.stopAnimate(); } catch (e) {}
+            }
+            el.innerHTML = '';
+            molSpinning = false; molPaused = false; molLabels = false; updateMolPauseButton();
+            molViewer = $3Dmol.createViewer(el, { backgroundColor: '#f8fbff', antialias: true });
+            molModel = molViewer.addModel(moleculeSDF[key], 'sdf');
+
+            molViewer.setStyle({}, {
+                stick: { radius: 0.16, colorscheme: 'Jmol' },
+                sphere: { scale: 0.34, colorscheme: 'Jmol' }
+            });
+            molViewer.setColor('C', { r: 0.22, g: 0.22, b: 0.22 });
+            molViewer.setColor('H', { r: 0.96, g: 0.96, b: 0.96 });
+
+            molViewer.setHoverable({}, true,
+                function (atom, viewer) {
+                    viewer.addLabel(atom.elem, { position: atom, backgroundColor: 'rgba(15,23,42,.88)', fontColor: 'white', fontSize: 12 });
+                },
+                function (atom, viewer) { viewer.removeAllLabels(); }
+            );
+
+            molViewer.setClickable({}, true, function (atom) {
+                const info = atom.elem === 'C'
+                    ? 'Karbon (C) — bagian dari rantai utama atau cabang.'
+                    : 'Hidrogen (H) — terikat pada atom karbon.';
+                document.getElementById('atomInfo').innerHTML = '🔬 <b>Atom ' + atom.elem + '</b><br>' + info;
+            });
+
+            molViewer.zoomTo();
+            molViewer.resize();
+            molViewer.render();
+
+            // Molekul langsung berputar otomatis saat tampil, tanpa tombol tambahan.
+            molViewer.spin('y', 0.7);
+            molSpinning = true;
+            molPaused = false;
+            updateMolPauseButton();
+        }
+        function resetMolView() {
+            if (molViewer) {
+                molViewer.spin(false);
+                molViewer.stopAnimate();
+                molSpinning = false;
+                molPaused = false;
+                updateMolPauseButton();
+                molViewer.removeAllLabels();
+                molViewer.zoomTo();
+                molViewer.render();
+            }
+        }
+        function toggleSpinMol() {
+            if (!molViewer) return;
+            molSpinning = !molSpinning;
+            molPaused = false;
+            if (molSpinning) molViewer.spin('y', 0.7);
+            else { molViewer.spin(false); molViewer.stopAnimate(); }
+            updateMolPauseButton();
+        }
+        function togglePauseMol() {
+            if (!molViewer) return;
+
+            if (molSpinning) {
+                // API 3Dmol menghentikan putaran kontinu melalui spin(false).
+                molViewer.spin(false);
+                molViewer.stopAnimate();
+                molSpinning = false;
+                molPaused = true;
+                molViewer.render();
+            } else if (molPaused) {
+                // Lanjutkan putaran setelah jeda.
+                molViewer.spin('y', 0.7);
+                molSpinning = true;
+                molPaused = false;
+            }
+            updateMolPauseButton();
+        }
+        function updateMolPauseButton() {
+            const btn = document.getElementById('pauseMolBtn');
+            if (!btn) return;
+            btn.innerHTML = molPaused
+                ? '<i class="fa-solid fa-play"></i> Lanjutkan'
+                : '<i class="fa-solid fa-pause"></i> Pause';
+            btn.disabled = !molSpinning && !molPaused;
+        }
+        function zoomInMol() {
+            if (!molViewer) return;
+            molViewer.zoom(1.25);
+            molViewer.render();
+        }
+        function zoomOutMol() {
+            if (!molViewer) return;
+            molViewer.zoom(0.8);
+            molViewer.render();
+        }
+        // Label hanya menandai jenis atom (C), tanpa nomor, supaya penomoran tetap ditentukan siswa.
+        function toggleAtomLabels() {
+            if (!molViewer) return;
+            molLabels = !molLabels;
+            molViewer.removeAllLabels();
+            if (molLabels) {
+                molModel.selectedAtoms({}).forEach(a => {
+                    if (a.elem === 'C') {
+                        molViewer.addLabel('C', {
+                            position: a, fontSize: 13, fontColor: 'black',
+                            backgroundColor: 'white', backgroundOpacity: .75
+                        });
+                    }
+                });
+            }
+            molViewer.render();
+        }
+
+        // Data Kesimpulan
+        const latihanQuestions = [
+            {
+                level: 'Tingkat 1 (Sederhana)',
+                html: 'CH<sub>3</sub> — CH = CH — CH<sub>3</sub>',
+                rantai: '4',
+                rangkap: '2',
+                cabang: 'none',
+                iupac: '2-butena'
+            },
+            {
+                level: 'Tingkat 2 (Posisi Rangkap)',
+                html: 'CH<sub>2</sub> = CH — CH<sub>2</sub> — CH<sub>2</sub> — CH<sub>3</sub>',
+                rantai: '5',
+                rangkap: '1',
+                cabang: 'none',
+                iupac: '1-pentena'
+            },
+            {
+                level: 'Tingkat 3 (Alkena Bercabang)',
+                html: 'CH<sub>2</sub> = C(CH<sub>3</sub>) — CH<sub>2</sub> — CH<sub>3</sub>',
+                rantai: '4',
+                rangkap: '1',
+                cabang: '2-metil',
+                iupac: '2-metil-1-butena'
+            },
+            {
+                level: 'Tingkat 4 (Multicabang)',
+                html: 'CH<sub>3</sub> — C(CH<sub>3</sub>) = C(CH<sub>3</sub>) — CH<sub>3</sub>',
+                rantai: '4',
+                rangkap: '2',
+                cabang: '2,3-dimetil',
+                iupac: '2,3-dimetil-2-butena'
+            }
+        ];
+
+        let currentLatIdx = 0;
+
+        function renderLatihan() {
+            const q = latihanQuestions[currentLatIdx];
+            document.getElementById('latLevelBadge').innerText = q.level;
+            document.getElementById('latihanChemDisplay').innerHTML = q.html;
+            resetLatihanForm();
+        }
+
+        function nextLatihanSoal() {
+            currentLatIdx = (currentLatIdx + 1) % latihanQuestions.length;
+            renderLatihan();
+        }
+
+        function resetLatihanForm() {
+            document.getElementById('latRantaiUtama').value = '';
+            document.getElementById('latPosisiRangkap').value = '';
+            document.getElementById('latCabang').value = 'none';
+            document.getElementById('latIupacInput').value = '';
+            document.getElementById('latihanFeedback').style.display = 'none';
+        }
+
+        function checkLatihanAnswer() {
+            const q = latihanQuestions[currentLatIdx];
+            const uRantai = document.getElementById('latRantaiUtama').value;
+            const uRangkap = document.getElementById('latPosisiRangkap').value;
+            const uCabang = document.getElementById('latCabang').value;
+            const uIupac = document.getElementById('latIupacInput').value.trim().toLowerCase();
+
+            const fb = document.getElementById('latihanFeedback');
+            const icon = document.getElementById('feedbackIcon');
+            const text = document.getElementById('feedbackText');
+
+            if (!uRantai || !uRangkap || !uIupac) {
+                fb.className = 'feedback-box incorrect';
+                icon.className = 'fa-solid fa-triangle-exclamation';
+                text.innerHTML = 'Mohon isi seluruh parameter pilihan dan nama IUPAC terlebih dahulu!';
+                return;
+            }
+
+            if (uRantai === q.rantai && uRangkap === q.rangkap && uCabang === q.cabang && uIupac === q.iupac) {
+                fb.className = 'feedback-box correct';
+                icon.className = 'fa-solid fa-circle-check';
+                text.innerHTML = '<b>Luar biasa! Jawaban Anda Benar.</b><br>Seluruh penentuan rantai, posisi ikatan rangkap, cabang, dan nama IUPAC sudah sesuai aturan.';
+            } else {
+                fb.className = 'feedback-box incorrect';
+                icon.className = 'fa-solid fa-circle-xmark';
+                let errDetails = '<b>Jawaban masih belum tepat:</b><br>';
+                if (uRantai !== q.rantai) errDetails += '• Rantai utama kurang tepat.<br>';
+                if (uRangkap !== q.rangkap) errDetails += '• Posisi nomor ikatan rangkap keliru.<br>';
+                if (uCabang !== q.cabang) errDetails += '• Penentuan cabang kurang tepat.<br>';
+                if (uIupac !== q.iupac) errDetails += `• Penulisan nama IUPAC belum sesuai. (Jawaban tepat: <i>${q.iupac}</i>)<br>`;
+                text.innerHTML = errDetails;
+            }
+        }
+
+        let identifikasiAlkenaSelesai = false;
+        function cekIdentifikasiAlkena() {
+            const pilihan = [...document.querySelectorAll('input[name="identifikasiAlkena"]:checked')];
+            const feedback = document.getElementById('feedbackIdentifikasiAlkena');
+            identifikasiAlkenaSelesai = false;
+            if (!pilihan.length) {
+                feedback.innerHTML = '<div style="padding:0.9rem;border-radius:8px;background:#fff7ed;border:1px solid #fed7aa;"><b>Jawaban wajib diisi.</b> Pilih struktur yang menurutmu termasuk alkena.</div>';
+                return;
+            }
+            const jawaban = pilihan.map(x => x.value);
+            const benar = pilihan.length === 2 && jawaban.every(v => v === 'alkena');
+            kirimKeSheet('Coba Identifikasi', [{
+                pertanyaan: 'Struktur mana yang termasuk alkena? (A: CH2=CH2, B: CH3-CH3, C: CH3-CH=CH2, D: CH3-CH2-CH3)',
+                jawaban: pilihan.map(x => { const b = x.closest('label') && x.closest('label').querySelector('b'); return b ? b.textContent.trim() : x.value; }).join(', '),
+                status: benar ? 'Benar' : 'Salah'
+            }]);
+            if (benar) {
+                identifikasiAlkenaSelesai = true;
+                feedback.innerHTML = '<div style="padding:0.9rem;border-radius:8px;background:#ecfdf5;border:1px solid #a7f3d0;"><b>Benar!</b> Struktur A dan C memiliki ikatan rangkap dua <b>C=C</b>, sehingga termasuk alkena. Sekarang kamu bisa melanjutkan.</div>';
+            } else {
+                feedback.innerHTML = '<div style="padding:0.9rem;border-radius:8px;background:#fef2f2;border:1px solid #fecaca;"><b>Belum tepat.</b> Pilih <b>semua</b> struktur yang memiliki ikatan rangkap dua <b>C=C</b>, yaitu struktur yang memiliki tanda <b>=</b> di antara dua atom C.</div>';
+            }
+        }
+
+        function lanjutDariTP1() {
+            if (!identifikasiAlkenaSelesai) {
+                const feedback = document.getElementById('feedbackIdentifikasiAlkena');
+                feedback.innerHTML = '<div style="padding:0.9rem;border-radius:8px;background:#fff7ed;border:1px solid #fed7aa;"><b>Kamu belum bisa lanjut.</b> Selesaikan identifikasi struktur alkena terlebih dahulu dengan menekan <b>Periksa Jawaban</b>.</div>';
+                feedback.scrollIntoView({behavior:'smooth', block:'center'});
+                return;
+            }
+            navigateTo('latihan');
+        }
+
+        // ===== Kesimpulan pembelajaran (seluruh kolom wajib diisi) =====
+        const SUMMARY_CRITERIA = [
+            { id: 'qSummary1', label: 'pengertian alkena' },
+            { id: 'qSummary2', label: 'cara menentukan rantai induk' },
+            { id: 'qSummary3', label: 'cara melakukan penomoran' },
+            { id: 'qSummary4', label: 'cabang atau substituen' }
+        ];
+
+        function updateSummaryRequirement() {
+            const box = document.getElementById('summaryRequirement');
+            if (!box) return false;
+            const all = SUMMARY_CRITERIA.every(c => {
+                const field = document.getElementById(c.id);
+                return field && field.value.trim().length > 0;
+            });
+            box.className = all ? 'quiz-hint summary-ok' : 'quiz-hint summary-warning';
+            box.textContent = all
+                ? '✅ Semua bagian kesimpulan sudah diisi. Kamu bisa menyelesaikan pembelajaran.'
+                : 'Lengkapi semua bagian kesimpulan terlebih dahulu.';
+            return all;
+        }
+
+        function finishSummary() {
+            if (!updateSummaryRequirement()) {
+                const firstEmpty = SUMMARY_CRITERIA.find(c => !document.getElementById(c.id).value.trim());
+                const field = firstEmpty && document.getElementById(firstEmpty.id);
+                if (field) {
+                    field.focus();
+                    field.scrollIntoView({behavior:'smooth', block:'center'});
+                }
+                return;
+            }
+            kirimKeSheet('Kesimpulan Pembelajaran', [
+                { pertanyaan: '1. Apa yang kamu ketahui tentang pengertian alkena?', jawaban: document.getElementById('qSummary1').value.trim(), status: 'Final' },
+                { pertanyaan: '2. Bagaimana cara menentukan rantai induk alkena?', jawaban: document.getElementById('qSummary2').value.trim(), status: 'Final' },
+                { pertanyaan: '3. Bagaimana cara melakukan penomoran alkena?', jawaban: document.getElementById('qSummary3').value.trim(), status: 'Final' },
+                { pertanyaan: '4. Apa yang kamu ketahui tentang cabang atau substituen?', jawaban: document.getElementById('qSummary4').value.trim(), status: 'Final' }
+            ]);
+            const done = document.getElementById('summaryDone');
+            done.className = 'eks-result show good';
+            done.innerHTML = '🎉 Kesimpulan berhasil disimpan. Kamu telah menyelesaikan pembelajaran tata nama alkena!';
+            document.getElementById('finishSummaryBtn').disabled = true;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.summary-input').forEach(field => {
+                field.addEventListener('input', updateSummaryRequirement);
+            });
+            updateSummaryRequirement();
+        });
+
+        document.addEventListener('DOMContentLoaded', updateNavLocks);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const kj = document.getElementById('kesimpulanJenuhTakJenuh');
+            if (!kj) return;
+            kj.addEventListener('change', function () {
+                const v = kj.value.trim();
+                if (!v) return;
+                kirimKeSheet('Kesimpulan Jenuh vs Tak Jenuh', [{ pertanyaan: 'Kesimpulan perbedaan hidrokarbon jenuh dan tak jenuh', jawaban: v, status: 'Diisi' }]);
+            });
+        });
+
+        // Petunjuk penggunaan: interaksi klik/keyboard tetap berada di dalam kartu yang sama.
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('.guide-card').forEach(function(card){
+                function toggleGuide(){
+                    card.classList.toggle('is-active');
+                }
+                card.addEventListener('click', toggleGuide);
+                card.addEventListener('keydown', function(e){
+                    if(e.key === 'Enter' || e.key === ' '){
+                        e.preventDefault();
+                        toggleGuide();
+                    }
+                });
+            });
+        });
+
+        // Initialization
+        window.onload = function() {
+            renderEksplorasi();
+        };
+    </script>
+</body>
+</html>
